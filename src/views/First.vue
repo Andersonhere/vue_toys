@@ -12,9 +12,9 @@
                 @mousedown="handleMouseDown($event, index)" />
             <div class="drop-area" ref="dropArea"></div>
             <div class="button_container">
-                <button :class="{ 'on': isOn }" @click="toggleSwitch">
-                </button>
+                <button :class="{ 'on': isOn }" @click="toggleSwitch"></button>
             </div>
+            <div class="line-area" ref="line"></div>
         </div>
         <audio ref="audio" src="../music/Claudio The Worm.mp3"></audio>
     </div>
@@ -160,7 +160,6 @@ export default {
     /* 居中 */
     z-index: 1;
     /* 确保 drop-area 在 upper-rectangle 上方 */
-    border: 2px solid #000;
     /* 设置边框，2px黑色实线 */
     border-radius: 10px;
     /* 可选：设置圆角 */
@@ -176,10 +175,41 @@ export default {
 }
 
 .button_container {
-    position: relative;
-    /* 确保定位相对于容器 */
-    height: 100vh;
-    /* 使容器占满全高 */
+    background-size: contain;
+    /* 背景图片缩放以适应区域 */
+    background-repeat: no-repeat;
+    /* 防止背景重复 */
+    background-position: center;
+    /* 背景图片居中 */
+    position: absolute;
+    top: 100%;
+    /* 居中 */
+    left: 10%;
+    /* 居中 */
+    transform: translate(-50%, -50%);
+    width: 100px;
+    /* 设置区域宽度 */
+    height: 100px;
+    /* 设置区域高度 */
+}
+.line-area{
+    background-size: contain;
+    /* 背景图片缩放以适应区域 */
+    background-repeat: no-repeat;
+    /* 防止背景重复 */
+    background-position: center;
+    background-image: url('../assets/电线.png');
+    /* 背景图片居中 */
+    position: absolute;
+    top: 100%;
+    /* 居中 */
+    left: 20%;
+    /* 居中 */
+    transform: translate(-50%, -50%);
+    width: 200px;
+    /* 设置区域宽度 */
+    height: 200px;
+    /* 设置区域高度 */
 }
 
 .link-container {
