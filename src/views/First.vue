@@ -10,11 +10,17 @@
             <img v-for="(img, index) in imageList" :key="index" :src="img.src" :alt="img.alt" class="draggable-image"
                 :style="{ left: img.x + 'px', top: img.y + 'px', position: 'absolute' }"
                 @mousedown="handleMouseDown($event, index)" />
-            <div class="drop-area" ref="dropArea"></div>
-            <div class="button_container">
-                <button :class="{ 'on': isOn }" @click="toggleSwitch"></button>
+
+            <div class="wrapper">
+                <div class="container">
+                    <div class="box button_container">
+                        <button :class="{ 'on': isOn }" @click="toggleSwitch"></button>
+                    </div>
+                    <div class="box line-area" ref="line"></div>
+                    <div class="box drop-area" ref="dropArea"></div>
+                </div>
             </div>
-            <div class="line-area" ref="line"></div>
+
         </div>
         <audio ref="audio" src="../music/Claudio The Worm.mp3"></audio>
     </div>
@@ -78,10 +84,9 @@ export default {
             if (!this.isOn) {
                 return;
             }
-            const upperRectangle = this.$refs.upperRectangle.getBoundingClientRect();
             let count = 0;
-
-            // 检查每个图片是否在上半部分区域内
+            const dropArea = this.$refs.dropArea.getBoundingClientRect();
+            // 检查每个图片是否在 dropArea 内
             this.imageList.forEach((img) => {
                 const imgRect = {
                     left: img.x,
@@ -92,10 +97,10 @@ export default {
 
                 // 检查重叠
                 if (
-                    imgRect.left < upperRectangle.right &&
-                    imgRect.right > upperRectangle.left &&
-                    imgRect.top < upperRectangle.bottom &&
-                    imgRect.bottom > upperRectangle.top
+                    imgRect.left < dropArea.right &&
+                    imgRect.right > dropArea.left &&
+                    imgRect.top < dropArea.bottom &&
+                    imgRect.bottom > dropArea.top
                 ) {
                     count++;
                 }
@@ -104,9 +109,11 @@ export default {
             // 如果有两个图片在区域内，播放音频
             if (count >= 2) {
                 this.$refs.audio.play();
+                // console.log('弹出提示的可见性变化: on' );
             } else {
                 this.$refs.audio.pause();
                 this.$refs.audio.currentTime = 0; // 可选：将音频播放时间重置为0
+                // console.log('弹出提示的可见性变化: false', );
             }
         },
     },
@@ -114,6 +121,37 @@ export default {
 </script>
 
 <style scoped>
+.wrapper {
+    display: flex;
+    justify-content: center;
+    /* 水平居中 */
+    align-items: flex-end;
+    /* 靠下对齐 */
+    height: 100vh;
+    /* 使 wrapper 高度为视口高度 */
+
+    /* 使 wrapper 高度为视口高度 */
+}
+
+.container {
+    display: flex;
+    align-items: flex-end;
+    /* 使用 Flexbox */
+}
+
+.box {
+    width: 200px;
+    /* 固定宽度 */
+    height: 200px;
+    /* 固定高度 */
+    margin: 0 -2px;
+    /* 左右间距 */
+    background-size: contain;
+    /* 背景图片覆盖 */
+    background-position: center;
+    /* 背景居中 */
+}
+
 #app {
     text-align: center;
     position: relative;
@@ -121,12 +159,6 @@ export default {
     /* 设定为全屏高度 */
 }
 
-.image-container {
-    position: relative;
-    width: 100%;
-    height: calc(100% - 60px);
-    /* 确保空间给下方控件 */
-}
 
 .draggable-image {
     width: 100px;
@@ -138,32 +170,7 @@ export default {
     /* 确保图片在上方 */
 }
 
-.drop-area {
-    width: 600px;
-    /* 设置区域宽度 */
-    height: 300px;
-    /* 设置区域高度 */
-    background-image: url('../assets/玩具-红色三角形.png');
-    /* 设置背景图片 */
-    background-size: contain;
-    /* 背景图片缩放以适应区域 */
-    background-repeat: no-repeat;
-    /* 防止背景重复 */
-    background-position: center;
-    /* 背景图片居中 */
-    position: absolute;
-    top: 80%;
-    /* 居中 */
-    left: 50%;
-    /* 居中 */
-    transform: translate(-50%, -50%);
-    /* 居中 */
-    z-index: 1;
-    /* 确保 drop-area 在 upper-rectangle 上方 */
-    /* 设置边框，2px黑色实线 */
-    border-radius: 10px;
-    /* 可选：设置圆角 */
-}
+
 
 .controls {
     display: flex;
@@ -174,43 +181,6 @@ export default {
     position: relative;
 }
 
-.button_container {
-    background-size: contain;
-    /* 背景图片缩放以适应区域 */
-    background-repeat: no-repeat;
-    /* 防止背景重复 */
-    background-position: center;
-    /* 背景图片居中 */
-    position: absolute;
-    top: 100%;
-    /* 居中 */
-    left: 10%;
-    /* 居中 */
-    transform: translate(-50%, -50%);
-    width: 100px;
-    /* 设置区域宽度 */
-    height: 100px;
-    /* 设置区域高度 */
-}
-.line-area{
-    background-size: contain;
-    /* 背景图片缩放以适应区域 */
-    background-repeat: no-repeat;
-    /* 防止背景重复 */
-    background-position: center;
-    background-image: url('../assets/电线.png');
-    /* 背景图片居中 */
-    position: absolute;
-    top: 100%;
-    /* 居中 */
-    left: 20%;
-    /* 居中 */
-    transform: translate(-50%, -50%);
-    width: 200px;
-    /* 设置区域宽度 */
-    height: 200px;
-    /* 设置区域高度 */
-}
 
 .link-container {
     position: fixed;
@@ -233,22 +203,60 @@ export default {
     /* 链接颜色 */
 }
 
-button {
-    position: absolute;
-    /* 使用绝对定位 */
-    bottom: 20px;
-    /* 距离底部20像素 */
-    left: 20px;
-    /* 距离左侧20像素 */
+.drop-area {
+    width: 600px;
+    /* 设置区域宽度 */
+    height: 300px;
+    /* 设置区域高度 */
+    background-image: url('../assets/玩具-红色三角形.png');
+    background-repeat: no-repeat;
+    margin-bottom: 30px;
+    /* 向下移动 */
+    /* 可选：设置圆角 */
+}
+
+.line-area {
+    background-size: contain;
+    /* 背景图片缩放以适应区域 */
+    background-repeat: no-repeat;
+    /* 防止背景重复 */
+    background-position: center;
+    background-image: url('../assets/电线.png');
+    /* 设置区域高度 */
+}
+
+.button_container {
     width: 100px;
-    /* 设置宽度 */
+    /* 固定宽度 */
     height: 100px;
-    /* 设置高度，保持相等 */
-    border: none;
-    border-radius: 50%;
-    /* 圆形 */
-    cursor: pointer;
+    /* 背景图片缩放以适应区域 */
+    /* 防止背景重复 */
+    background-position: center;
+    background-repeat: no-repeat;
+    /* 居中 */
+    z-index: 1;
+    /* 确保 drop-area 在 upper-rectangle 上方 */
+    margin-bottom: 30px;
+    /* 向下移动 */
+    /* 设置区域高度 */
+}
+
+button {
+    width: 100px;
+    /* 固定宽度 */
+    height: 100px;
+    /* 背景图片缩放以适应区域 */
+    /* 防止背景重复 */
+    background-position: center;
+    background-repeat: no-repeat;
+    /* 居中 */
+    z-index: 1;
+    /* 确保 drop-area 在 upper-rectangle 上方 */
+    margin-bottom: 30px;
+    /* 向下移动 */
     background-image: url('../assets/开关-灰色.png');
+    background-size: cover;
+    border-radius: 50%;
     background-size: cover;
     transition: background-image 0.3s;
 }
