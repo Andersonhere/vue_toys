@@ -43,18 +43,16 @@
 
 <script>
 export default {
-    name: 'SecondPage',
+    name: 'FivePage',
     data() {
         return {
             imageList: [
-                { src: require('../assets/积木-蓝色三角.png'), x: 100, y: 100, alt: 'b' },
-                { src: require('../assets/积木-蓝色三角.png'), x: 300, y: 100, alt: 'b' },
-                { src: require('../assets/积木-蓝色圆.png'), x: 500, y: 100, alt: 'b' },
-                { src: require('../assets/积木-蓝色圆.png'), x: 700, y: 100, alt: 'b' },
-                { src: require('../assets/积木-红色矩形.png'), x: 900, y: 100, alt: 'r' },
-                { src: require('../assets/积木-红色矩形.png'), x: 1100, y: 100, alt: 'r' },
-                { src: require('../assets/积木-黄色矩形.png'), x: 1300, y: 100, alt: 'y' },
-                { src: require('../assets/积木-黄色矩形.png'), x: 1500, y: 100, alt: 'y' },
+                { src: require('../assets/积木-紫色三角.png'), x: 100, y: 100, alt: 'p' },
+                { src: require('../assets/积木-天蓝L.png'), x: 300, y: 100, alt: 'sb' },
+                { src: require('../assets/积木-紫色矩形.png'), x: 500, y: 100, alt: 'p' },
+                { src: require('../assets/积木-黄色L.png'), x: 700, y: 100, alt: 'y' },
+                { src: require('../assets/积木-绿色十字.png'), x: 900, y: 100, alt: 'g' },
+                { src: require('../assets/积木-棕色禁止符.png'), x: 1100, y: 100, alt: 'z' },
             ],
             draggingIndex: null,
             offsetX: 0,
@@ -235,9 +233,10 @@ export default {
     /* 设置区域宽度 */
     height: 300px;
     /* 设置区域高度 */
-    background-image: url('../assets/玩具-蓝色矩形.png');
+    background-image: url('../assets/紫色L形.png');
     background-repeat: no-repeat;
     margin-bottom: 30px;
+    margin-left: -100px;
     /* 向下移动 */
     /* 可选：设置圆角 */
 }

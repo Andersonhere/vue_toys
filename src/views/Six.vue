@@ -43,18 +43,12 @@
 
 <script>
 export default {
-    name: 'SecondPage',
+    name: 'SixPage',
     data() {
         return {
             imageList: [
-                { src: require('../assets/积木-蓝色三角.png'), x: 100, y: 100, alt: 'b' },
-                { src: require('../assets/积木-蓝色三角.png'), x: 300, y: 100, alt: 'b' },
-                { src: require('../assets/积木-蓝色圆.png'), x: 500, y: 100, alt: 'b' },
-                { src: require('../assets/积木-蓝色圆.png'), x: 700, y: 100, alt: 'b' },
-                { src: require('../assets/积木-红色矩形.png'), x: 900, y: 100, alt: 'r' },
-                { src: require('../assets/积木-红色矩形.png'), x: 1100, y: 100, alt: 'r' },
-                { src: require('../assets/积木-黄色矩形.png'), x: 1300, y: 100, alt: 'y' },
-                { src: require('../assets/积木-黄色矩形.png'), x: 1500, y: 100, alt: 'y' },
+                { src: require('../assets/积木-蓝色L.png'), x: 100, y: 100, alt: 'b' },
+                { src: require('../assets/积木-橙色心.png'), x: 300, y: 100, alt: 'o' },
             ],
             draggingIndex: null,
             offsetX: 0,
@@ -235,9 +229,10 @@ export default {
     /* 设置区域宽度 */
     height: 300px;
     /* 设置区域高度 */
-    background-image: url('../assets/玩具-蓝色矩形.png');
+    background-image: url('../assets/玩具-缺角图形.png');
     background-repeat: no-repeat;
     margin-bottom: 30px;
+    margin-left: -100px;
     /* 向下移动 */
     /* 可选：设置圆角 */
 }

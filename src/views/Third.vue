@@ -43,16 +43,16 @@
 
 <script>
 export default {
-    name: 'SecondPage',
+    name: 'ThirdPage',
     data() {
         return {
             imageList: [
-                { src: require('../assets/积木-蓝色三角.png'), x: 100, y: 100, alt: 'b' },
-                { src: require('../assets/积木-蓝色三角.png'), x: 300, y: 100, alt: 'b' },
+                { src: require('../assets/积木-黄色三角.png'), x: 100, y: 100, alt: 'y' },
+                { src: require('../assets/积木-黄色三角.png'), x: 300, y: 100, alt: 'y' },
+                { src: require('../assets/积木-红色圆形.png'), x: 900, y: 100, alt: 'r' },
+                { src: require('../assets/积木-红色圆形.png'), x: 1100, y: 100, alt: 'r' },
                 { src: require('../assets/积木-蓝色圆.png'), x: 500, y: 100, alt: 'b' },
                 { src: require('../assets/积木-蓝色圆.png'), x: 700, y: 100, alt: 'b' },
-                { src: require('../assets/积木-红色矩形.png'), x: 900, y: 100, alt: 'r' },
-                { src: require('../assets/积木-红色矩形.png'), x: 1100, y: 100, alt: 'r' },
                 { src: require('../assets/积木-黄色矩形.png'), x: 1300, y: 100, alt: 'y' },
                 { src: require('../assets/积木-黄色矩形.png'), x: 1500, y: 100, alt: 'y' },
             ],
@@ -164,7 +164,7 @@ export default {
     /* 固定宽度 */
     height: 200px;
     /* 固定高度 */
-    margin: 0 -2px;
+    margin: -40px;
     /* 左右间距 */
     background-size: contain;
     /* 背景图片覆盖 */
@@ -235,7 +235,7 @@ export default {
     /* 设置区域宽度 */
     height: 300px;
     /* 设置区域高度 */
-    background-image: url('../assets/玩具-蓝色矩形.png');
+    background-image: url('../assets/玩具-黄色圆形.png');
     background-repeat: no-repeat;
     margin-bottom: 30px;
     /* 向下移动 */
@@ -249,6 +249,7 @@ export default {
     /* 防止背景重复 */
     background-position: center;
     background-image: url('../assets/电线.png');
+    margin-bottom: -20px;
     /* 设置区域高度 */
 }
 

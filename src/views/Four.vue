@@ -43,18 +43,16 @@
 
 <script>
 export default {
-    name: 'SecondPage',
+    name: 'FourPage',
     data() {
         return {
             imageList: [
                 { src: require('../assets/积木-蓝色三角.png'), x: 100, y: 100, alt: 'b' },
-                { src: require('../assets/积木-蓝色三角.png'), x: 300, y: 100, alt: 'b' },
-                { src: require('../assets/积木-蓝色圆.png'), x: 500, y: 100, alt: 'b' },
-                { src: require('../assets/积木-蓝色圆.png'), x: 700, y: 100, alt: 'b' },
-                { src: require('../assets/积木-红色矩形.png'), x: 900, y: 100, alt: 'r' },
-                { src: require('../assets/积木-红色矩形.png'), x: 1100, y: 100, alt: 'r' },
-                { src: require('../assets/积木-黄色矩形.png'), x: 1300, y: 100, alt: 'y' },
-                { src: require('../assets/积木-黄色矩形.png'), x: 1500, y: 100, alt: 'y' },
+                { src: require('../assets/积木-蓝色圆.png'), x: 300, y: 100, alt: 'b' },
+                { src: require('../assets/积木-红色矩形.png'), x: 500, y: 100, alt: 'r' },
+                { src: require('../assets/积木-黄色矩形.png'), x: 700, y: 100, alt: 'y' },
+                { src: require('../assets/积木-绿色心.png'), x: 900, y: 100, alt: 'g' },
+                { src: require('../assets/积木-橙色箭头.png'), x: 1100, y: 100, alt: 'o' },
             ],
             draggingIndex: null,
             offsetX: 0,

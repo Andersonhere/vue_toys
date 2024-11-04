@@ -3,9 +3,24 @@
         <div class="image-container">
             <div class="link-container">
                 <router-link to="/">Go to Home</router-link>
-                <router-link to="/gallery">Go to Gallery</router-link>
-                <router-link to="/about">Go to About</router-link>
-                <router-link to="/second">Go to Second</router-link>
+                <router-link to="/first">
+                    <img src="../assets/link/first.png" alt="Go to First" />
+                </router-link>
+                <router-link to="/second">
+                    <img src="../assets/link/second.png" alt="Go to Second" />
+                </router-link>
+                <router-link to="/third">
+                    <img src="../assets/link/third.png" alt="Go to Third" />
+                </router-link>
+                <router-link to="/four">
+                    <img src="../assets/link/four.png" alt="Go to Four" />
+                </router-link>
+                <router-link to="/five">
+                    <img src="../assets/link/five.png" alt="Go to Five" />
+                </router-link>
+                <router-link to="/six">
+                    <img src="../assets/link/six.png" alt="Go to About" />
+                </router-link>
             </div>
             <img v-for="(img, index) in imageList" :key="index" :src="img.src" :alt="img.alt" class="draggable-image"
                 :style="{ left: img.x + 'px', top: img.y + 'px', position: 'absolute' }"
@@ -32,19 +47,20 @@ export default {
     data() {
         return {
             imageList: [
-                { src: require('../assets/积木-蓝色三角.png'), x: 100, y: 100 },
-                { src: require('../assets/积木-蓝色三角.png'), x: 300, y: 100 },
-                { src: require('../assets/积木-黄色三角.png'), x: 500, y: 100 },
-                { src: require('../assets/积木-黄色三角.png'), x: 700, y: 100 },
-                { src: require('../assets/积木-红色圆形.png'), x: 900, y: 100 },
-                { src: require('../assets/积木-红色圆形.png'), x: 1100, y: 100 },
-                { src: require('../assets/积木-红色矩形.png'), x: 1300, y: 100 },
-                { src: require('../assets/积木-红色矩形.png'), x: 1500, y: 100 },
+                { src: require('../assets/积木-蓝色三角.png'), x: 100, y: 100, alt: 'b' },
+                { src: require('../assets/积木-蓝色三角.png'), x: 300, y: 100, alt: 'b' },
+                { src: require('../assets/积木-黄色三角.png'), x: 500, y: 100, alt: 'y' },
+                { src: require('../assets/积木-黄色三角.png'), x: 700, y: 100, alt: 'y' },
+                { src: require('../assets/积木-红色圆形.png'), x: 900, y: 100, alt: 'r' },
+                { src: require('../assets/积木-红色圆形.png'), x: 1100, y: 100, alt: 'r' },
+                { src: require('../assets/积木-红色矩形.png'), x: 1300, y: 100, alt: 'r' },
+                { src: require('../assets/积木-红色矩形.png'), x: 1500, y: 100, alt: 'r' },
             ],
             draggingIndex: null,
             offsetX: 0,
             offsetY: 0,
             isOn: false,
+            imageList_alt: [],
         };
     },
     methods: {
@@ -93,8 +109,8 @@ export default {
                     top: img.y,
                     right: img.x + 100, // 图片宽度
                     bottom: img.y + 100, // 图片高度
+                    alt: img.alt,
                 };
-
                 // 检查重叠
                 if (
                     imgRect.left < dropArea.right &&
@@ -102,14 +118,18 @@ export default {
                     imgRect.top < dropArea.bottom &&
                     imgRect.bottom > dropArea.top
                 ) {
+                    if (count >= 2) {
+                        return;
+                    }
+                    this.imageList_alt[count] = imgRect.alt;
                     count++;
                 }
             });
 
             // 如果有两个图片在区域内，播放音频
-            if (count >= 2) {
-                this.$refs.audio.play();
-                // console.log('弹出提示的可见性变化: on' );
+            if (count == 2 && this.imageList_alt[0] == this.imageList_alt[1]) {
+                // this.$refs.audio.play();
+                console.log('弹出提示的可见性变化: on', this.imageList_alt[0], this.imageList_alt[1]);
             } else {
                 this.$refs.audio.pause();
                 this.$refs.audio.currentTime = 0; // 可选：将音频播放时间重置为0
@@ -194,13 +214,21 @@ export default {
     /* 竖向排列 */
 }
 
-.link-container a {
+.link-container img {
     margin: 5px 0;
     /* 每个链接之间的间隔 */
-    text-decoration: none;
-    /* 去掉下划线 */
-    color: blue;
-    /* 链接颜色 */
+    width: 50px;
+    /* 根据需要设置图片宽度 */
+    height: auto;
+    /* 高度自适应 */
+    cursor: pointer;
+    /* 鼠标悬停时变为指针 */
+    border: 2px solid #ccc;
+    /* 边框样式 */
+    border-radius: 5px;
+    /* 圆角边框 */
+    padding: 5px;
+    /* 内边距，增加边框的视觉效果 */
 }
 
 .drop-area {

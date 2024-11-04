@@ -7,6 +7,10 @@ import Gallery from './views/Gallery.vue';
 import First from './views/First.vue';
 import Second from './views/Second.vue';
 import ImageGrid from './views/ImageGrid.vue';
+import Third from './views/Third.vue';
+import Four from './views/Four.vue';
+import Five from './views/Five.vue';
+import Six from './views/Six.vue';
 
 Vue.use(Router);
 
@@ -40,6 +44,26 @@ const routes = [
     path: '/imageGrid',
     name: 'ImageGrid',
     component: ImageGrid,
+  },
+  {
+    path: '/third',
+    name: 'Third',
+    component: Third,
+  },
+  {
+    path: '/four',
+    name: 'Four',
+    component: Four,
+  },
+  {
+    path: '/five',
+    name: 'Five',
+    component: Five,
+  },
+  {
+    path: '/six',
+    name: 'Six',
+    component: Six,
   },
 ];
 
