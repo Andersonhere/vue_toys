@@ -122,8 +122,8 @@ export default {
 
             // 如果有两个图片在区域内，播放音频
             if (count == 2 && this.imageList_alt[0] == this.imageList_alt[1]) {
-                // this.$refs.audio.play();
-                console.log('弹出提示的可见性变化: on', this.imageList_alt[0], this.imageList_alt[1]);
+                this.$refs.audio.play();
+                // console.log('弹出提示的可见性变化: on', this.imageList_alt[0], this.imageList_alt[1]);
             } else {
                 this.$refs.audio.pause();
                 this.$refs.audio.currentTime = 0; // 可选：将音频播放时间重置为0
