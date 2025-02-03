@@ -116,9 +116,9 @@ export default {
                     imgRect.top < dropArea.bottom &&
                     imgRect.bottom > dropArea.top
                 ) {
-                    if (count >= 2) {
-                        return;
-                    }
+                    // if (count >= 2) {
+                    //     return;
+                    // }
                     this.imageList_alt[count] = imgRect.alt;
                     count++;
                 }

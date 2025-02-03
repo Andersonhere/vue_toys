@@ -2,24 +2,8 @@
     <div id="app" @mousemove="handleMouseMove" @mouseup="handleMouseUp">
         <div class="image-container">
             <div class="link-container">
-                <router-link to="/">Go to Home</router-link>
-                <router-link to="/first">
-                    <img src="../assets/link/first.png" alt="Go to First" />
-                </router-link>
                 <router-link to="/second">
-                    <img src="../assets/link/second.png" alt="Go to Second" />
-                </router-link>
-                <router-link to="/third">
-                    <img src="../assets/link/third.png" alt="Go to Third" />
-                </router-link>
-                <router-link to="/four">
-                    <img src="../assets/link/four.png" alt="Go to Four" />
-                </router-link>
-                <router-link to="/five">
-                    <img src="../assets/link/five.png" alt="Go to Five" />
-                </router-link>
-                <router-link to="/six">
-                    <img src="../assets/link/six.png" alt="Go to About" />
+                     <img src="../assets/下一页.png"/> 
                 </router-link>
             </div>
             <img v-for="(img, index) in imageList" :key="index" :src="img.src" :alt="img.alt" class="draggable-image"
@@ -118,9 +102,9 @@ export default {
                     imgRect.top < dropArea.bottom &&
                     imgRect.bottom > dropArea.top
                 ) {
-                    if (count >= 2) {
-                        return;
-                    }
+                    // if (count >= 2) {
+                    //     return;
+                    // }
                     this.imageList_alt[count] = imgRect.alt;
                     count++;
                 }

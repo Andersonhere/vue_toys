@@ -2,24 +2,8 @@
     <div id="app" @mousemove="handleMouseMove" @mouseup="handleMouseUp">
         <div class="image-container">
             <div class="link-container">
-                <router-link to="/">Go to Home</router-link>
-                <router-link to="/first">
-                    <img src="../assets/link/first.png" alt="Go to First" />
-                </router-link>
                 <router-link to="/second">
-                    <img src="../assets/link/second.png" alt="Go to Second" />
-                </router-link>
-                <router-link to="/third">
-                    <img src="../assets/link/third.png" alt="Go to Third" />
-                </router-link>
-                <router-link to="/four">
-                    <img src="../assets/link/four.png" alt="Go to Four" />
-                </router-link>
-                <router-link to="/five">
-                    <img src="../assets/link/five.png" alt="Go to Five" />
-                </router-link>
-                <router-link to="/six">
-                    <img src="../assets/link/six.png" alt="Go to About" />
+                     <img src="../assets/下一页.png"/> 
                 </router-link>
             </div>
             <img v-for="(img, index) in imageList" :key="index" :src="img.src" :alt="img.alt" class="draggable-image"
@@ -35,7 +19,6 @@
                     <div class="box drop-area" ref="dropArea"></div>
                 </div>
             </div>
-
         </div>
         <audio ref="audio" src="../music/Claudio The Worm.mp3"></audio>
     </div>
@@ -47,14 +30,14 @@ export default {
     data() {
         return {
             imageList: [
-                { src: require('../assets/积木-蓝色三角.png'), x: 100, y: 100, alt: 'b' },
-                { src: require('../assets/积木-蓝色三角.png'), x: 300, y: 100, alt: 'b' },
-                { src: require('../assets/积木-黄色三角.png'), x: 500, y: 100, alt: 'y' },
-                { src: require('../assets/积木-黄色三角.png'), x: 700, y: 100, alt: 'y' },
-                { src: require('../assets/积木-红色圆形.png'), x: 900, y: 100, alt: 'r' },
-                { src: require('../assets/积木-红色圆形.png'), x: 1100, y: 100, alt: 'r' },
-                { src: require('../assets/积木-红色矩形.png'), x: 1300, y: 100, alt: 'r' },
-                { src: require('../assets/积木-红色矩形.png'), x: 1500, y: 100, alt: 'r' },
+                { src: require('../assets/蓝色三角形.png'), x: 100, y: 100, alt: 'b' },
+                { src: require('../assets/蓝色三角形.png'), x: 250, y: 100, alt: 'b' },
+                { src: require('../assets/黄色矩形.png'), x: 400, y: 100, alt: 'y' },
+                { src: require('../assets/蓝色矩形.png'), x: 550, y: 100, alt: 'y' },
+                { src: require('../assets/黄色三角形.png'), x: 700, y: 100, alt: 'r' },
+                { src: require('../assets/黄色三角形.png'), x: 850, y: 100, alt: 'r' },
+                { src: require('../assets/蓝色圆形.png'), x: 1000, y: 100, alt: 'r' },
+                { src: require('../assets/黄色圆形.png'), x: 1150, y: 100, alt: 'r' },
             ],
             draggingIndex: null,
             offsetX: 0,
@@ -118,9 +101,9 @@ export default {
                     imgRect.top < dropArea.bottom &&
                     imgRect.bottom > dropArea.top
                 ) {
-                    if (count >= 2) {
-                        return;
-                    }
+                    // if (count >= 2) {
+                    //     return;
+                    // }
                     this.imageList_alt[count] = imgRect.alt;
                     count++;
                 }
@@ -138,6 +121,7 @@ export default {
         },
     },
 };
+
 </script>
 
 <style scoped>
@@ -147,7 +131,7 @@ export default {
     /* 水平居中 */
     align-items: flex-end;
     /* 靠下对齐 */
-    height: 100vh;
+    height: 90vh;
     /* 使 wrapper 高度为视口高度 */
 
     /* 使 wrapper 高度为视口高度 */
@@ -236,7 +220,7 @@ export default {
     /* 设置区域宽度 */
     height: 300px;
     /* 设置区域高度 */
-    background-image: url('../assets/玩具-红色三角形.png');
+    background-image: url('../assets/玩具1.png');
     background-repeat: no-repeat;
     margin-bottom: 30px;
     /* 向下移动 */
@@ -292,4 +276,30 @@ button {
 button.on {
     background-image: url('../assets/开关蓝色.jpg');
 }
+@media (max-width: 1024px) {
+    .draggable-image {
+        width: 80px;
+        height: 80px;
+    }
+
+    .drop-area {
+        width: 400px;
+        height: 200px;
+    }
+
+    .button_container {
+        width: 80px;
+        height: 80px;
+    }
+
+    button {
+        width: 80px;
+        height: 80px;
+    }
+
+    .link-container img {
+        width: 40px;
+    }
+}
+
 </style>
