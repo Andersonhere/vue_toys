@@ -2,15 +2,16 @@
     <div id="app" @mousemove="handleMouseMove" @mouseup="handleMouseUp" @touchmove="handleMouseMove"
         @touchend="handleMouseUp">
         <div class="image-container">
+
             <div class="link-container">
                 <router-link to="/second">
                     <img src="../assets/下一页.png" />
                 </router-link>
             </div>
-            <img v-for="(img, index) in imageList" :key="index" :src="img.src" :alt="img.alt" class="draggable-image"
-                :style="{ left: img.x + 'px', top: img.y + 'px', position: 'absolute' }"
-                @mousedown="handleMouseDown($event, index)" @touchstart="handleMouseDown($event, index)" />
 
+            <img v-for="(img, index) in imageList" :key="index" :src="img.src" :alt="img.alt" class="draggable-image"
+                :style="{ left: img.x + 'px', top: img.y + 'px', position: 'absolute'}"
+                @mousedown="handleMouseDown($event, index)" @touchstart="handleMouseDown($event, index)" />
             <div class="wrapper">
                 <div class="container">
                     <div class="box button_container">
@@ -39,7 +40,7 @@ export default {
                 { src: require('../assets/黄色三角形.png'), x: 650, y: 100, alt: 'r' },
                 { src: require('../assets/黄色三角形.png'), x: 800, y: 100, alt: 'r' },
                 { src: require('../assets/蓝色圆形.png'), x: 950, y: 100, alt: 'r' },
-                { src: require('../assets/黄色圆形.png'), x: 1000, y: 100, alt: 'r' },
+                { src: require('../assets/黄色圆形.png'), x: 1100, y: 100, alt: 'r' },
             ],
             draggingIndex: null,
             offsetX: 0,
@@ -299,7 +300,7 @@ button.on {
     background-image: url('../assets/开关蓝色.jpg');
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1200px) {
     .draggable-image {
         width: 80px;
         height: 80px;
@@ -321,29 +322,8 @@ button.on {
     }
 
     .link-container img {
-        width: 40px;
-    }
-}
-
-@media (max-width: 1024px) {
-    button {
-        font-size: 16px;
-    }
-
-    .link-container img {
-        width: 40px;
-    }
-}
-
-@media (max-width: 1024px) {
-    .draggable-image {
         width: 80px;
-        height: 80px;
-    }
-
-    .drop-area {
-        width: 400px;
-        height: 200px;
     }
 }
+
 </style>
