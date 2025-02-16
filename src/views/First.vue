@@ -12,6 +12,7 @@
             <img v-for="(img, index) in imageList" :key="index" :src="img.src" :alt="img.alt" class="draggable-image"
                 :style="{ left: img.x + 'px', top: img.y + 'px', position: 'absolute'}"
                 @mousedown="handleMouseDown($event, index)" @touchstart="handleMouseDown($event, index)" />
+
             <div class="wrapper">
                 <div class="container">
                     <div class="box button_container">
@@ -150,14 +151,11 @@ export default {
 <style scoped>
 .wrapper {
     display: flex;
-    justify-content: center;
     /* 水平居中 */
     align-items: flex-end;
     /* 靠下对齐 */
     height: 90vh;
-    /* 使 wrapper 高度为视口高度 */
-
-    /* 使 wrapper 高度为视口高度 */
+    padding-left: 15%; /* 右侧空白的宽度 */
 }
 
 .container {
@@ -195,6 +193,7 @@ export default {
     cursor: grab;
     z-index: 2;
     /* 确保图片在上方 */
+    padding-right: 50px; /* 右侧空白的宽度 */
 }
 
 
@@ -239,9 +238,9 @@ export default {
 }
 
 .drop-area {
-    width: 400px;
+    width: 300px;
     /* 设置区域宽度 */
-    height: 150px;
+    height: 200px;
     /* 设置区域高度 */
     background-image: url('../assets/玩具1.png');
     background-repeat: no-repeat;
