@@ -34,14 +34,14 @@ export default {
     data() {
         return {
             imageList: [
-                { src: require('../assets/蓝色三角形.png'), x: 50, y: 100, alt: 'b' },
-                { src: require('../assets/蓝色三角形.png'), x: 200, y: 100, alt: 'b' },
-                { src: require('../assets/黄色矩形.png'), x: 350, y: 100, alt: 'y' },
-                { src: require('../assets/蓝色矩形.png'), x: 500, y: 100, alt: 'y' },
-                { src: require('../assets/黄色三角形.png'), x: 650, y: 100, alt: 'r' },
-                { src: require('../assets/黄色三角形.png'), x: 800, y: 100, alt: 'r' },
-                { src: require('../assets/蓝色圆形.png'), x: 950, y: 100, alt: 'r' },
-                { src: require('../assets/黄色圆形.png'), x: 1100, y: 100, alt: 'r' },
+                { src: require('../assets/蓝色三角形.png'), x: 0, y: 100, alt: 'b' },
+                { src: require('../assets/蓝色三角形.png'), x: 0, y: 100, alt: 'b' },
+                { src: require('../assets/黄色矩形.png'), x: 0, y: 100, alt: 'y' },
+                { src: require('../assets/蓝色矩形.png'), x: 0, y: 100, alt: 'y' },
+                { src: require('../assets/黄色三角形.png'), x: 0, y: 100, alt: 'r' },
+                { src: require('../assets/黄色三角形.png'), x: 0, y: 100, alt: 'r' },
+                { src: require('../assets/蓝色圆形.png'), x: 0, y: 100, alt: 'r' },
+                { src: require('../assets/黄色圆形.png'), x: 0, y: 100, alt: 'r' },
             ],
             draggingIndex: null,
             offsetX: 0,
@@ -143,7 +143,18 @@ export default {
             }
             console.log("342");
         },
+        initX() {
+            // 获取当前屏幕尺寸
+            const screenWidth = window.innerWidth;
+            console.log(screenWidth, this.imageList.length, screenWidth / this.imageList.length);
+            this.imageList.forEach((img, index) => {
+                img.x = index * (screenWidth / this.imageList.length) + 4;
+            })
+        }
     },
+    beforeMount() {
+        this.initX();
+    }
 };
 
 </script>
