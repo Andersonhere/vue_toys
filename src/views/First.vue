@@ -37,11 +37,11 @@ export default {
                 { src: require('../assets/蓝色三角形.png'), x: 50, y: 100, alt: 'b' },
                 { src: require('../assets/蓝色三角形.png'), x: 200, y: 100, alt: 'b' },
                 { src: require('../assets/黄色矩形.png'), x: 350, y: 100, alt: 'y' },
-                { src: require('../assets/蓝色矩形.png'), x: 500, y: 100, alt: 'y' },
-                { src: require('../assets/黄色三角形.png'), x: 650, y: 100, alt: 'r' },
-                { src: require('../assets/黄色三角形.png'), x: 800, y: 100, alt: 'r' },
-                { src: require('../assets/蓝色圆形.png'), x: 950, y: 100, alt: 'r' },
-                { src: require('../assets/黄色圆形.png'), x: 1100, y: 100, alt: 'r' },
+                { src: require('../assets/蓝色矩形.png'), x: 500, y: 100, alt: 'b' },
+                { src: require('../assets/黄色三角形.png'), x: 650, y: 100, alt: 'y' },
+                { src: require('../assets/黄色三角形.png'), x: 800, y: 100, alt: 'y' },
+                { src: require('../assets/蓝色圆形.png'), x: 950, y: 100, alt: 'b' },
+                { src: require('../assets/黄色圆形.png'), x: 1100, y: 100, alt: 'y' },
             ],
             draggingIndex: null,
             offsetX: 0,
@@ -114,7 +114,8 @@ export default {
                     imgRect.left < dropArea.right &&
                     imgRect.right > dropArea.left &&
                     imgRect.top < dropArea.bottom &&
-                    imgRect.bottom > dropArea.top
+                    imgRect.bottom > dropArea.top - 5 &&
+                    imgRect.bottom < dropArea.top + 30
                 ) {
                     // if (count >= 2) {
                     //     return;
@@ -238,9 +239,10 @@ export default {
 }
 
 .drop-area {
-    width: 300px;
-    /* 设置区域宽度 */
-    height: 200px;
+    background-size: contain;
+    background-position: center;
+    width: 345px; /* 根据计算结果设置宽度 */
+    height: 150px; /* 目标高度 */
     /* 设置区域高度 */
     background-image: url('../assets/玩具1.png');
     background-repeat: no-repeat;
@@ -301,8 +303,8 @@ button.on {
 
 @media (max-width: 1200px) {
     .draggable-image {
-        width: 80px;
-        height: 80px;
+        width: 100px;
+        height: 100px;
     }
 
     .drop-area {
