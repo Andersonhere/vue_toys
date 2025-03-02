@@ -114,7 +114,7 @@ export default {
                     imgRect.left < dropArea.right &&
                     imgRect.right > dropArea.left &&
                     imgRect.top < dropArea.bottom &&
-                    imgRect.bottom > dropArea.top - 5 &&
+                    imgRect.bottom > dropArea.top - 20 &&
                     imgRect.bottom < dropArea.top + 30
                 ) {
                     // if (count >= 2) {

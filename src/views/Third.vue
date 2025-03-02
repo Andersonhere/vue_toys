@@ -1,41 +1,28 @@
 <template>
-    <div id="app" @mousemove="handleMouseMove" @mouseup="handleMouseUp">
+    <div id="app" @mousemove="handleMouseMove" @mouseup="handleMouseUp" @touchmove="handleMouseMove"
+        @touchend="handleMouseUp">
         <div class="image-container">
+
             <div class="link-container">
-                <router-link to="/">Go to Home</router-link>
-                <router-link to="/first">
-                    <img src="../assets/link/first.png" alt="Go to First" />
-                </router-link>
-                <router-link to="/second">
-                    <img src="../assets/link/second.png" alt="Go to Second" />
-                </router-link>
-                <router-link to="/third">
-                    <img src="../assets/link/third.png" alt="Go to Third" />
-                </router-link>
                 <router-link to="/four">
-                    <img src="../assets/link/four.png" alt="Go to Four" />
-                </router-link>
-                <router-link to="/five">
-                    <img src="../assets/link/five.png" alt="Go to Five" />
-                </router-link>
-                <router-link to="/six">
-                    <img src="../assets/link/six.png" alt="Go to About" />
+                    <img src="../assets/下一页.png" />
                 </router-link>
             </div>
+
             <img v-for="(img, index) in imageList" :key="index" :src="img.src" :alt="img.alt" class="draggable-image"
-                :style="{ left: img.x + 'px', top: img.y + 'px', position: 'absolute' }"
-                @mousedown="handleMouseDown($event, index)" />
+                :style="{ left: img.x + 'px', top: img.y + 'px', position: 'absolute'}"
+                @mousedown="handleMouseDown($event, index)" @touchstart="handleMouseDown($event, index)" />
 
             <div class="wrapper">
                 <div class="container">
                     <div class="box button_container">
-                        <button :class="{ 'on': isOn }" @click="toggleSwitch"></button>
+                        <button :class="{ 'on': isOn }" @click="toggleSwitch($event)"
+                            @touchstart="toggleSwitch($event)"></button>
                     </div>
                     <div class="box line-area" ref="line"></div>
                     <div class="box drop-area" ref="dropArea"></div>
                 </div>
             </div>
-
         </div>
         <audio ref="audio" src="../music/Claudio The Worm.mp3"></audio>
     </div>
@@ -47,24 +34,25 @@ export default {
     data() {
         return {
             imageList: [
-                { src: require('../assets/积木-黄色三角.png'), x: 100, y: 100, alt: 'y' },
-                { src: require('../assets/积木-黄色三角.png'), x: 300, y: 100, alt: 'y' },
-                { src: require('../assets/积木-红色圆形.png'), x: 900, y: 100, alt: 'r' },
-                { src: require('../assets/积木-红色圆形.png'), x: 1100, y: 100, alt: 'r' },
-                { src: require('../assets/积木-蓝色圆.png'), x: 500, y: 100, alt: 'b' },
-                { src: require('../assets/积木-蓝色圆.png'), x: 700, y: 100, alt: 'b' },
-                { src: require('../assets/积木-黄色矩形.png'), x: 1300, y: 100, alt: 'y' },
-                { src: require('../assets/积木-黄色矩形.png'), x: 1500, y: 100, alt: 'y' },
+                { src: require('../assets/蓝色三角形.png'), x: 50, y: 100, alt: 's' },
+                { src: require('../assets/蓝色三角形.png'), x: 200, y: 100, alt: 's' },
+                { src: require('../assets/黄色矩形.png'), x: 350, y: 100, alt: 'j' },
+                { src: require('../assets/蓝色矩形.png'), x: 500, y: 100, alt: 'j' },
+                { src: require('../assets/蓝色矩形.png'), x: 650, y: 100, alt: 'j' },
+                { src: require('../assets/红色矩形.png'), x: 800, y: 100, alt: 'j' },
+                { src: require('../assets/红色三角形.png'), x: 950, y: 100, alt: 's' },
+                { src: require('../assets/黄色三角形.png'), x: 1100, y: 100, alt: 's' },
             ],
             draggingIndex: null,
             offsetX: 0,
             offsetY: 0,
             isOn: false,
+            isbegin: true,
             imageList_alt: [],
         };
     },
     methods: {
-        toggleSwitch() {
+        toggleSwitch(event) {
             this.isOn = !this.isOn;
             if (!this.isOn) {
                 this.$refs.audio.pause();
@@ -72,25 +60,35 @@ export default {
             } else {
                 this.checkDropArea(); // 检查图片是否在区域内
             }
+            if (this.isbegin) {
+                setTimeout(() => {
+                    this.$refs.audio.pause();
+                    this.$refs.audio.currentTime = 0; // 可选：将音频播放时间重置为0
+                }, 100);
+                this.$refs.audio.play();
+                this.isbegin = false;
+            }
+            console.log('Switch toggled:', this.isOn);
+            event.preventDefault()
         },
         handleMouseDown(event, index) {
             this.draggingIndex = index;
-            this.offsetX = event.clientX - this.imageList[index].x;
-            this.offsetY = event.clientY - this.imageList[index].y;
-
-            // Prevent text selection during dragging
+            const clientX = event.touches ? event.touches[0].clientX : event.clientX;
+            const clientY = event.touches ? event.touches[0].clientY : event.clientY;
+            this.offsetX = clientX - this.imageList[index].x;
+            this.offsetY = clientY - this.imageList[index].y;
             event.preventDefault();
         },
         handleMouseMove(event) {
             if (this.draggingIndex !== null) {
                 const index = this.draggingIndex;
-
-                // 使用 requestAnimationFrame 来提高性能
+                const clientX = event.touches ? event.touches[0].clientX : event.clientX;
+                const clientY = event.touches ? event.touches[0].clientY : event.clientY;
                 requestAnimationFrame(() => {
-                    this.imageList[index].x = event.clientX - this.offsetX;
-                    this.imageList[index].y = event.clientY - this.offsetY;
+                    this.imageList[index].x = clientX - this.offsetX;
+                    this.imageList[index].y = clientY - this.offsetY;
                 });
-                this.checkDropArea(); // 检查图片是否在区域内
+                this.checkDropArea();
             }
         },
         handleMouseUp() {
@@ -116,7 +114,8 @@ export default {
                     imgRect.left < dropArea.right &&
                     imgRect.right > dropArea.left &&
                     imgRect.top < dropArea.bottom &&
-                    imgRect.bottom > dropArea.top
+                    imgRect.bottom > dropArea.top - 20 &&
+                    imgRect.bottom < dropArea.top + 30
                 ) {
                     // if (count >= 2) {
                     //     return;
@@ -128,7 +127,9 @@ export default {
 
             // 如果有两个图片在区域内，播放音频
             if (count == 2 && this.imageList_alt[0] == this.imageList_alt[1]) {
+                //document.getElementById('audio').play();
                 this.$refs.audio.play();
+                //document.querySelector('audio').play();
                 // console.log('弹出提示的可见性变化: on', this.imageList_alt[0], this.imageList_alt[1]);
             } else {
                 this.$refs.audio.pause();
@@ -136,21 +137,26 @@ export default {
                 // console.log('弹出提示的可见性变化: false', );
             }
         },
+        iosplay() {
+            if (window.navigator.userAgent.match(/(iPod|iPhoneliPad)/)) {
+                this.$refs.audioPlayer.play();
+                console.log("wwe");
+            }
+            console.log("342");
+        },
     },
 };
+
 </script>
 
 <style scoped>
 .wrapper {
     display: flex;
-    justify-content: center;
     /* 水平居中 */
     align-items: flex-end;
     /* 靠下对齐 */
-    height: 100vh;
-    /* 使 wrapper 高度为视口高度 */
-
-    /* 使 wrapper 高度为视口高度 */
+    height: 90vh;
+    padding-left: 15%; /* 右侧空白的宽度 */
 }
 
 .container {
@@ -164,7 +170,7 @@ export default {
     /* 固定宽度 */
     height: 200px;
     /* 固定高度 */
-    margin: -40px;
+    margin: 0 -2px;
     /* 左右间距 */
     background-size: contain;
     /* 背景图片覆盖 */
@@ -188,6 +194,7 @@ export default {
     cursor: grab;
     z-index: 2;
     /* 确保图片在上方 */
+    padding-right: 50px; /* 右侧空白的宽度 */
 }
 
 
@@ -200,6 +207,7 @@ export default {
     /* 增加顶部间距 */
     position: relative;
 }
+
 
 .link-container {
     position: fixed;
@@ -231,11 +239,12 @@ export default {
 }
 
 .drop-area {
-    width: 600px;
-    /* 设置区域宽度 */
-    height: 300px;
+    background-size: contain;
+    background-position: center;
+    width: 345px; /* 根据计算结果设置宽度 */
+    height: 150px; /* 目标高度 */
     /* 设置区域高度 */
-    background-image: url('../assets/玩具-黄色圆形.png');
+    background-image: url('../assets/玩具2.png');
     background-repeat: no-repeat;
     margin-bottom: 30px;
     /* 向下移动 */
@@ -249,7 +258,6 @@ export default {
     /* 防止背景重复 */
     background-position: center;
     background-image: url('../assets/电线.png');
-    margin-bottom: -20px;
     /* 设置区域高度 */
 }
 
@@ -292,4 +300,31 @@ button {
 button.on {
     background-image: url('../assets/开关蓝色.jpg');
 }
+
+@media (max-width: 1200px) {
+    .draggable-image {
+        width: 100px;
+        height: 100px;
+    }
+
+    .drop-area {
+        width: 400px;
+        height: 200px;
+    }
+
+    .button_container {
+        width: 80px;
+        height: 80px;
+    }
+
+    button {
+        width: 80px;
+        height: 80px;
+    }
+
+    .link-container img {
+        width: 80px;
+    }
+}
+
 </style>

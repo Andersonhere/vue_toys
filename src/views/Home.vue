@@ -2,24 +2,12 @@
     <div>
         <div class="link-container">
             <h1 class="title">Home Page</h1>
-            <router-link to="/first">
-                <img src="../assets/link/first.png" alt="Go to First" />
-            </router-link>
-            <router-link to="/second">
-                <img src="../assets/link/second.png" alt="Go to Second" />
-            </router-link>
-            <router-link to="/third">
-                <img src="../assets/link/third.png" alt="Go to Third" />
-            </router-link>
-            <router-link to="/four">
-                <img src="../assets/link/four.png" alt="Go to Four" />
-            </router-link>
-            <router-link to="/five">
-                <img src="../assets/link/five.png" alt="Go to Five" />
-            </router-link>
-            <router-link to="/six">
-                <img src="../assets/link/six.png" alt="Go to About" />
-            </router-link>
+            <router-link to="/first">Go to 实验一：game1</router-link>
+            <router-link to="/third">Go to 实验一：game2</router-link>
+            <router-link to="/five">Go to 实验二：game1</router-link>
+            <router-link to="/six">Go to 实验二：game2</router-link>
+            <router-link to="/seven">Go to 实验二：game3</router-link>
+
         </div>
     </div>
 </template>

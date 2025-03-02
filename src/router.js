@@ -11,6 +11,7 @@ import Third from './views/Third.vue';
 import Four from './views/Four.vue';
 import Five from './views/Five.vue';
 import Six from './views/Six.vue';
+import Seven from './views/Seven.vue';
 
 Vue.use(Router);
 
@@ -64,6 +65,11 @@ const routes = [
     path: '/six',
     name: 'Six',
     component: Six,
+  },
+  {
+    path: '/seven',
+    name: 'Seven',
+    component: Seven,
   },
 ];
 
