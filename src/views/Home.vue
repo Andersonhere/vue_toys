@@ -2,6 +2,7 @@
     <div>
         <div class="link-container">
             <h1 class="title">Home Page</h1>
+            <router-link to="/test">Go to 练习：game0</router-link>
             <router-link to="/first">Go to 实验一：game1</router-link>
             <router-link to="/third">Go to 实验一：game2</router-link>
             <router-link to="/five">Go to 实验二：game1</router-link>

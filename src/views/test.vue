@@ -1,282 +1,326 @@
 <template>
-    <div id="app" @mousemove="handleMouseMove" @mouseup="handleMouseUp" @touchmove="handleMouseMove" @touchend="handleMouseUp">
-      <div class="image-container">
-        <!-- 下一页链接 -->
-        <div class="link-container">
-          <router-link to="/second">
-            <img src="../assets/下一页.png" />
-          </router-link>
-        </div>
-  
-        <!-- 可拖拽的图片 -->
-        <div class="image-list-container">
-          <img
-            v-for="(img, index) in imageList"
-            :key="index"
-            :src="img.src"
-            :alt="img.alt"
-            class="draggable-image"
-            :style="{ left: img.x + 'px', top: img.y + 'px', position: 'absolute' }"
-            @mousedown="handleMouseDown($event, index)"
-            @touchstart="handleMouseDown($event, index)"
-          />
-        </div>
-  
-        <!-- 开关、电线和拖拽区域 -->
-        <div class="wrapper">
-          <div class="container">
-            <div class="box button_container">
-              <button :class="{ 'on': isOn }" @click="toggleSwitch($event)" @touchstart="toggleSwitch($event)"></button>
+    <div id="app" @mousemove="handleMouseMove" @mouseup="handleMouseUp" @touchmove="handleMouseMove"
+        @touchend="handleMouseUp">
+        <div class="image-container">
+
+            <div class="link-container">
+                <router-link to="/">
+                    <img src="../assets/返回主页.png" />
+                </router-link>
             </div>
-            <div class="box line-area" ref="line"></div>
-            <div class="box drop-area" ref="dropArea"></div>
-          </div>
+
+            <img v-for="(img, index) in imageList" :key="index" :src="img.src" :alt="img.alt" class="draggable-image"
+                :style="{ left: img.x + 'px', top: img.y + 'px', position: 'absolute'}"
+                @mousedown="handleMouseDown($event, index)" @touchstart="handleMouseDown($event, index)" />
+
+            <div class="wrapper">
+                <div class="container">
+                    <div class="box button_container">
+                        <button :class="{ 'on': isOn }" @click="toggleSwitch($event)"
+                            @touchstart="toggleSwitch($event)"></button>
+                    </div>
+                    <div class="box line-area" ref="line"></div>
+                    <div class="box drop-area" ref="dropArea"></div>
+                </div>
+            </div>
         </div>
-      </div>
-  
-      <!-- 音频 -->
-      <audio ref="audio" src="../music/Claudio The Worm.mp3"></audio>
+        <audio ref="audio" src="../music/kanong_short.mp3"></audio>
     </div>
-  </template>
-  
-  <script>
-  export default {
-    name: 'FirstPage',
+</template>
+
+<script>
+export default {
+    name: 'TestPage',
     data() {
-      return {
-        imageList: [
-          { src: require('../assets/蓝色三角形.png'), x: 0, y: 0, alt: 'b' },
-          { src: require('../assets/蓝色三角形.png'), x: 0, y: 0, alt: 'b' },
-          { src: require('../assets/黄色矩形.png'), x: 0, y: 0, alt: 'y' },
-          { src: require('../assets/蓝色矩形.png'), x: 0, y: 0, alt: 'y' },
-          { src: require('../assets/黄色三角形.png'), x: 0, y: 0, alt: 'r' },
-          { src: require('../assets/黄色三角形.png'), x: 0, y: 0, alt: 'r' },
-          { src: require('../assets/蓝色圆形.png'), x: 0, y: 0, alt: 'r' },
-          { src: require('../assets/黄色圆形.png'), x: 0, y: 0, alt: 'r' },
-        ],
-        draggingIndex: null,
-        offsetX: 0,
-        offsetY: 0,
-        isOn: false,
-        isbegin: true,
-        imageList_alt: [],
-      };
-    },
-    mounted() {
-      this.centerImages();
+        return {
+            imageList: [
+                { src: require('../assets/蓝色矩形.png'), x: 50, y: 100, alt: 'b' },
+                { src: require('../assets/蓝色矩形.png'), x: 200, y: 100, alt: 'b' },
+                { src: require('../assets/黄色圆形.png'), x: 350, y: 100, alt: 'o' },
+                { src: require('../assets/黄色圆形.png'), x: 500, y: 100, alt: 'g' },
+            ],
+            draggingIndex: null,
+            offsetX: 0,
+            offsetY: 0,
+            isOn: false,
+            isbegin: true,
+            imageList_alt: [],
+        };
     },
     methods: {
-      // 计算图片的初始位置，使其居中显示
-      centerImages() {
-        const containerWidth = this.$el.querySelector('.image-list-container').clientWidth;
-        const imageWidth = 100; // 图片宽度
-        const gap = 20; // 图片之间的间距
-        const imagesPerRow = Math.floor(containerWidth / (imageWidth + gap));
-        const offsetX = (containerWidth - imagesPerRow * (imageWidth + gap)) / 2;
-  
-        this.imageList.forEach((img, index) => {
-          const row = Math.floor(index / imagesPerRow);
-          const col = index % imagesPerRow;
-          img.x = offsetX + col * (imageWidth + gap);
-          img.y = row * (imageWidth + gap);
-        });
-      },
-      // 切换开关状态
-      toggleSwitch(event) {
-        this.isOn = !this.isOn;
-        if (!this.isOn) {
-          this.$refs.audio.pause();
-          this.$refs.audio.currentTime = 0;
-        } else {
-          this.checkDropArea();
-        }
-        if (this.isbegin) {
-          setTimeout(() => {
-            this.$refs.audio.pause();
-            this.$refs.audio.currentTime = 0;
-          }, 100);
-          this.$refs.audio.play();
-          this.isbegin = false;
-        }
-        console.log('Switch toggled:', this.isOn);
-        event.preventDefault();
-      },
-      // 处理鼠标/触摸按下事件
-      handleMouseDown(event, index) {
-        this.draggingIndex = index;
-        const clientX = event.touches ? event.touches[0].clientX : event.clientX;
-        const clientY = event.touches ? event.touches[0].clientY : event.clientY;
-        this.offsetX = clientX - this.imageList[index].x;
-        this.offsetY = clientY - this.imageList[index].y;
-        event.preventDefault();
-      },
-      // 处理鼠标/触摸移动事件
-      handleMouseMove(event) {
-        if (this.draggingIndex !== null) {
-          const index = this.draggingIndex;
-          const clientX = event.touches ? event.touches[0].clientX : event.clientX;
-          const clientY = event.touches ? event.touches[0].clientY : event.clientY;
-          requestAnimationFrame(() => {
-            this.imageList[index].x = clientX - this.offsetX;
-            this.imageList[index].y = clientY - this.offsetY;
-          });
-          this.checkDropArea();
-        }
-      },
-      // 处理鼠标/触摸释放事件
-      handleMouseUp() {
-        this.draggingIndex = null;
-      },
-      // 检查图片是否在拖拽区域内
-      checkDropArea() {
-        if (!this.isOn) {
-          return;
-        }
-        let count = 0;
-        const dropArea = this.$refs.dropArea.getBoundingClientRect();
-        this.imageList.forEach((img) => {
-          const imgRect = {
-            left: img.x,
-            top: img.y,
-            right: img.x + 100,
-            bottom: img.y + 100,
-            alt: img.alt,
-          };
-          if (
-            imgRect.left < dropArea.right &&
-            imgRect.right > dropArea.left &&
-            imgRect.top < dropArea.bottom &&
-            imgRect.bottom > dropArea.top
-          ) {
-            this.imageList_alt[count] = imgRect.alt;
-            count++;
-          }
-        });
-  
-        if (count == 2 && this.imageList_alt[0] == this.imageList_alt[1]) {
-          this.$refs.audio.play();
-        } else {
-          this.$refs.audio.pause();
-          this.$refs.audio.currentTime = 0;
-        }
-      },
+        toggleSwitch(event) {
+            this.isOn = !this.isOn;
+            if (!this.isOn) {
+                this.$refs.audio.pause();
+                this.$refs.audio.currentTime = 0; // 可选：将音频播放时间重置为0
+            } else {
+                this.checkDropArea(); // 检查图片是否在区域内
+            }
+            if (this.isbegin) {
+                setTimeout(() => {
+                    this.$refs.audio.pause();
+                    this.$refs.audio.currentTime = 0; // 可选：将音频播放时间重置为0
+                }, 100);
+                this.$refs.audio.play();
+                this.isbegin = false;
+            }
+            console.log('Switch toggled:', this.isOn);
+            event.preventDefault()
+        },
+        handleMouseDown(event, index) {
+            this.draggingIndex = index;
+            const clientX = event.touches ? event.touches[0].clientX : event.clientX;
+            const clientY = event.touches ? event.touches[0].clientY : event.clientY;
+            this.offsetX = clientX - this.imageList[index].x;
+            this.offsetY = clientY - this.imageList[index].y;
+            event.preventDefault();
+        },
+        handleMouseMove(event) {
+            if (this.draggingIndex !== null) {
+                const index = this.draggingIndex;
+                const clientX = event.touches ? event.touches[0].clientX : event.clientX;
+                const clientY = event.touches ? event.touches[0].clientY : event.clientY;
+                requestAnimationFrame(() => {
+                    this.imageList[index].x = clientX - this.offsetX;
+                    this.imageList[index].y = clientY - this.offsetY;
+                });
+                this.checkDropArea();
+            }
+        },
+        handleMouseUp() {
+            this.draggingIndex = null;
+        },
+        checkDropArea() {
+            if (!this.isOn) {
+                return;
+            }
+            let count = 0;
+            const dropArea = this.$refs.dropArea.getBoundingClientRect();
+            // 检查每个图片是否在 dropArea 内
+            this.imageList.forEach((img) => {
+                const imgRect = {
+                    left: img.x,
+                    top: img.y,
+                    right: img.x + 100, // 图片宽度
+                    bottom: img.y + 100, // 图片高度
+                    alt: img.alt,
+                };
+                // 检查重叠
+                if (
+                    imgRect.left < dropArea.right &&
+                    imgRect.right > dropArea.left &&
+                    imgRect.top < dropArea.bottom &&
+                    imgRect.bottom > dropArea.top - 20 &&
+                    imgRect.bottom < dropArea.top + 30
+                ) {
+                    // if (count >= 2) {
+                    //     return;
+                    // }
+                    this.imageList_alt[count] = imgRect.alt;
+                    count++;
+                }
+            });
+
+            // 如果有两个图片在区域内，播放音频
+            if (count == 2 ) {
+                //document.getElementById('audio').play();
+                this.$refs.audio.play();
+                //document.querySelector('audio').play();
+                // console.log('弹出提示的可见性变化: on', this.imageList_alt[0], this.imageList_alt[1]);
+            } else {
+                this.$refs.audio.pause();
+                this.$refs.audio.currentTime = 0; // 可选：将音频播放时间重置为0
+                // console.log('弹出提示的可见性变化: false', );
+            }
+        },
+        iosplay() {
+            if (window.navigator.userAgent.match(/(iPod|iPhoneliPad)/)) {
+                this.$refs.audioPlayer.play();
+                console.log("wwe");
+            }
+            console.log("342");
+        },
     },
-  };
-  </script>
-  
-  <style scoped>
-  /* 响应式布局 */
-  @media (max-width: 1024px) {
-    .draggable-image {
-      width: 80px;
-      height: 80px;
-    }
-    .drop-area {
-      width: 400px;
-      height: 200px;
-    }
-    .button_container {
-      width: 80px;
-      height: 80px;
-    }
-    button {
-      width: 80px;
-      height: 80px;
-    }
-    .link-container img {
-      width: 40px;
-    }
-  }
-  
-  /* 全局样式 */
-  #app {
+};
+
+</script>
+
+<style scoped>
+.wrapper {
+    display: flex;
+    /* 水平居中 */
+    align-items: flex-end;
+    /* 靠下对齐 */
+    height: 90vh;
+    padding-left: 15%; /* 右侧空白的宽度 */
+}
+
+.container {
+    display: flex;
+    align-items: flex-end;
+    /* 使用 Flexbox */
+}
+
+.box {
+    width: 200px;
+    /* 固定宽度 */
+    height: 200px;
+    /* 固定高度 */
+    margin: 0 -2px;
+    /* 左右间距 */
+    background-size: contain;
+    /* 背景图片覆盖 */
+    background-position: center;
+    /* 背景居中 */
+}
+
+#app {
     text-align: center;
     position: relative;
     height: 100vh;
-  }
-  
-  /* 图片容器 */
-  .image-container {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-  }
-  
-  /* 图片列表容器 */
-  .image-list-container {
-    position: relative;
-    width: 100%;
-    height: 200px; /* 根据需要调整高度 */
-    margin-bottom: 20px;
-  }
-  
-  /* 可拖拽的图片 */
-  .draggable-image {
+    /* 设定为全屏高度 */
+}
+
+
+.draggable-image {
     width: 100px;
+    /* 设置图片宽度 */
     height: 100px;
+    /* 设置图片高度 */
     cursor: grab;
     z-index: 2;
-  }
-  
-  /* 链接容器 */
-  .link-container {
+    /* 确保图片在上方 */
+    padding-right: 50px; /* 右侧空白的宽度 */
+}
+
+
+
+.controls {
+    display: flex;
+    justify-content: center;
+    /* 水平居中 */
+    margin-top: 10px;
+    /* 增加顶部间距 */
+    position: relative;
+}
+
+
+.link-container {
     position: fixed;
+    /* 固定定位 */
     bottom: 20px;
+    /* 距离底部20像素 */
     right: 20px;
+    /* 距离右边20像素 */
     display: flex;
     flex-direction: column;
-  }
-  
-  .link-container img {
+    /* 竖向排列 */
+}
+
+.link-container img {
     margin: 5px 0;
+    /* 每个链接之间的间隔 */
     width: 50px;
+    /* 根据需要设置图片宽度 */
     height: auto;
+    /* 高度自适应 */
     cursor: pointer;
+    /* 鼠标悬停时变为指针 */
     border: 2px solid #ccc;
+    /* 边框样式 */
     border-radius: 5px;
+    /* 圆角边框 */
     padding: 5px;
-  }
-  
-  /* 拖拽区域 */
-  .drop-area {
-    width: 400px;
-    height: 150px;
+    /* 内边距，增加边框的视觉效果 */
+}
+
+.drop-area {
+    background-size: contain;
+    background-position: center;
+    width: 345px; /* 根据计算结果设置宽度 */
+    height: 150px; /* 目标高度 */
+    /* 设置区域高度 */
     background-image: url('../assets/玩具1.png');
     background-repeat: no-repeat;
     margin-bottom: 30px;
-  }
-  
-  /* 电线区域 */
-  .line-area {
-    background-image: url('../assets/电线.png');
+    /* 向下移动 */
+    /* 可选：设置圆角 */
+}
+
+.line-area {
     background-size: contain;
+    /* 背景图片缩放以适应区域 */
     background-repeat: no-repeat;
+    /* 防止背景重复 */
     background-position: center;
-  }
-  
-  /* 开关按钮 */
-  .button_container {
+    background-image: url('../assets/电线.png');
+    /* 设置区域高度 */
+}
+
+.button_container {
     width: 100px;
+    /* 固定宽度 */
     height: 100px;
+    /* 背景图片缩放以适应区域 */
+    /* 防止背景重复 */
     background-position: center;
     background-repeat: no-repeat;
+    /* 居中 */
     z-index: 1;
+    /* 确保 drop-area 在 upper-rectangle 上方 */
     margin-bottom: 30px;
-  }
-  
-  button {
+    /* 向下移动 */
+    /* 设置区域高度 */
+}
+
+button {
     width: 100px;
+    /* 固定宽度 */
     height: 100px;
+    /* 背景图片缩放以适应区域 */
+    /* 防止背景重复 */
+    background-position: center;
+    background-repeat: no-repeat;
+    /* 居中 */
+    z-index: 1;
+    /* 确保 drop-area 在 upper-rectangle 上方 */
+    margin-bottom: 30px;
+    /* 向下移动 */
     background-image: url('../assets/开关-灰色.png');
     background-size: cover;
     border-radius: 50%;
+    background-size: cover;
     transition: background-image 0.3s;
-  }
-  
-  button.on {
+}
+
+button.on {
     background-image: url('../assets/开关蓝色.jpg');
-  }
-  </style>
+}
+
+@media (max-width: 1200px) {
+    .draggable-image {
+        width: 100px;
+        height: 100px;
+    }
+
+    .drop-area {
+        width: 400px;
+        height: 200px;
+    }
+
+    .button_container {
+        width: 80px;
+        height: 80px;
+    }
+
+    button {
+        width: 80px;
+        height: 80px;
+    }
+
+    .link-container img {
+        width: 80px;
+    }
+}
+
+</style>

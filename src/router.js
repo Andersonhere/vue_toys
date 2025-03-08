@@ -12,6 +12,7 @@ import Four from './views/Four.vue';
 import Five from './views/Five.vue';
 import Six from './views/Six.vue';
 import Seven from './views/Seven.vue';
+import Test from './views/test.vue';
 
 Vue.use(Router);
 
@@ -70,6 +71,11 @@ const routes = [
     path: '/seven',
     name: 'Seven',
     component: Seven,
+  },
+  {
+    path: '/test',
+    name: 'Test',
+    component: Test,
   },
 ];
 
