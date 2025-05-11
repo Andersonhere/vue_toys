@@ -4,7 +4,7 @@
         <div class="image-container">
 
             <div class="link-container">
-                <router-link to="/First">
+                <router-link to="/E1G1_1">
                     <img src="../assets/下一页.png" />
                 </router-link>
             </div>
