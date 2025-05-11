@@ -4,8 +4,8 @@
         <div class="image-container">
 
             <div class="link-container">
-                <router-link to="/four">
-                    <img src="../assets/下一页.png" />
+                <router-link to="/E1G1_3">
+                    <img src="../assets/返回主页.png" />
                 </router-link>
             </div>
 
@@ -24,24 +24,22 @@
                 </div>
             </div>
         </div>
-        <audio ref="audio" src="../music/Annie_s_short.mp3"></audio>
+        <audio ref="audio" src="../music/Claudio The Worm.mp3"></audio>
     </div>
 </template>
 
 <script>
 export default {
-    name: 'ThirdPage',
+    name: 'E1G1_2',
     data() {
         return {
             imageList: [
-                { src: require('../assets/蓝色三角形.png'), x: 50, y: 100, alt: 's' },
-                { src: require('../assets/蓝色三角形.png'), x: 200, y: 100, alt: 's' },
-                { src: require('../assets/黄色矩形.png'), x: 350, y: 100, alt: 'j' },
-                { src: require('../assets/蓝色矩形.png'), x: 500, y: 100, alt: 'j' },
-                { src: require('../assets/蓝色矩形.png'), x: 650, y: 100, alt: 'j' },
-                { src: require('../assets/红色矩形.png'), x: 800, y: 100, alt: 'j' },
-                { src: require('../assets/红色三角形.png'), x: 950, y: 100, alt: 's' },
-                { src: require('../assets/黄色三角形.png'), x: 1100, y: 100, alt: 's' },
+                { src: require('../assets/蓝色箭头.png'), x: 50, y: 100, alt: 'b' },
+                { src: require('../assets/蓝色心形.png'), x: 200, y: 100, alt: 'b' },
+                { src: require('../assets/橙色矩形.png'), x: 350, y: 100, alt: 'o' },
+                { src: require('../assets/绿色矩形.png'), x: 500, y: 100, alt: 'g' },
+                { src: require('../assets/黄色圆形.png'), x: 650, y: 100, alt: 'y' },
+                { src: require('../assets/紫色三角形.png'), x: 800, y: 100, alt: 'p' },
             ],
             draggingIndex: null,
             offsetX: 0,
@@ -244,7 +242,7 @@ export default {
     width: 345px; /* 根据计算结果设置宽度 */
     height: 150px; /* 目标高度 */
     /* 设置区域高度 */
-    background-image: url('../assets/玩具2.png');
+    background-image: url('../assets/玩具1.png');
     background-repeat: no-repeat;
     margin-bottom: 30px;
     /* 向下移动 */

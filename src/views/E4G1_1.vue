@@ -4,14 +4,20 @@
         <div class="image-container">
 
             <div class="link-container">
-                <router-link to="/">
-                    <img src="../assets/返回主页.png" />
+                <router-link to="/E4G1_2">
+                    <img src="../assets/下一页.png" />
                 </router-link>
             </div>
 
             <img v-for="(img, index) in imageList" :key="index" :src="img.src" :alt="img.alt" class="draggable-image"
-                :style="{ left: img.x + 'px', top: img.y + 'px', position: 'absolute'}"
-                @mousedown="handleMouseDown($event, index)" @touchstart="handleMouseDown($event, index)" />
+                :style="{ left: img.x + 'px', top: img.y + 'px', position: 'absolute' }"
+                @mousedown="handleMouseDown($event, index, 'original')"
+                @touchstart="handleMouseDown($event, index, 'original')" />
+
+            <img v-for="(img, index) in imageList1" :key="index" :src="img.src" :alt="img.alt" class="draggable-image1"
+                :style="{ left: img.x + 'px', top: img.y + 'px', position: 'absolute' }"
+                @mousedown="handleMouseDown($event, index, 'small')"
+                @touchstart="handleMouseDown($event, index, 'small')" />
 
             <div class="wrapper">
                 <div class="container">
@@ -24,20 +30,25 @@
                 </div>
             </div>
         </div>
-        <audio ref="audio" src="../music/kanong_short.mp3"></audio>
+        <audio ref="audio" src="../music/A_little_story.mp3"></audio>
     </div>
 </template>
 
 <script>
 export default {
-    name: 'TestPage',
+    name: 'E4G1_1Page',
     data() {
         return {
             imageList: [
-                { src: require('../assets/黄色矩形.png'), x: 50, y: 100, alt: 'b' },
-                { src: require('../assets/黄色矩形.png'), x: 200, y: 100, alt: 'b' },
+                { src: require('../assets/红三角大.png'), x: 50, y: 100, alt: 'd' },
+                { src: require('../assets/红圆大.png'), x: 350, y: 100, alt: 'd' },
+            ],
+            imageList1: [
+                { src: require('../assets/红三角小.png'), x: 200, y: 150, alt: 's' },
+                { src: require('../assets/红圆小.png'), x: 500, y: 150, alt: 's' },
             ],
             draggingIndex: null,
+            activeListType: null,  // 当前拖动的列表类型
             offsetX: 0,
             offsetY: 0,
             isOn: false,
@@ -65,12 +76,20 @@ export default {
             console.log('Switch toggled:', this.isOn);
             event.preventDefault()
         },
-        handleMouseDown(event, index) {
+        handleMouseDown(event, index, listType) {
             this.draggingIndex = index;
+            this.activeListType = listType;
+            console.log('Switch imgListalt:', event.alt);
             const clientX = event.touches ? event.touches[0].clientX : event.clientX;
             const clientY = event.touches ? event.touches[0].clientY : event.clientY;
-            this.offsetX = clientX - this.imageList[index].x;
-            this.offsetY = clientY - this.imageList[index].y;
+            if (this.draggingIndex !== null) {
+                const currentList = this.activeListType === 'original'
+                    ? this.imageList
+                    : this.imageList1;
+                this.offsetX = clientX - currentList[index].x;
+                this.offsetY = clientY - currentList[index].y;
+            }
+
             event.preventDefault();
         },
         handleMouseMove(event) {
@@ -79,8 +98,13 @@ export default {
                 const clientX = event.touches ? event.touches[0].clientX : event.clientX;
                 const clientY = event.touches ? event.touches[0].clientY : event.clientY;
                 requestAnimationFrame(() => {
-                    this.imageList[index].x = clientX - this.offsetX;
-                    this.imageList[index].y = clientY - this.offsetY;
+                    if (this.draggingIndex !== null) {
+                        const currentList = this.activeListType === 'original'
+                            ? this.imageList
+                            : this.imageList1;
+                        currentList[index].x = clientX - this.offsetX;
+                        currentList[index].y = clientY - this.offsetY;
+                    }
                 });
                 this.checkDropArea();
             }
@@ -119,8 +143,31 @@ export default {
                 }
             });
 
+            this.imageList1.forEach((img) => {
+                const imgRect = {
+                    left: img.x,
+                    top: img.y,
+                    right: img.x + 50, // 图片宽度
+                    bottom: img.y + 50, // 图片高度
+                    alt: img.alt,
+                };
+                // 检查重叠
+                if (
+                    imgRect.left < dropArea.right &&
+                    imgRect.right > dropArea.left &&
+                    imgRect.top < dropArea.bottom &&
+                    imgRect.bottom > dropArea.top - 20 &&
+                    imgRect.bottom < dropArea.top + 30
+                ) {
+                    // if (count >= 2) {
+                    //     return;
+                    // }
+                    this.imageList_alt[count] = imgRect.alt;
+                    count++;
+                }
+            });
             // 如果有两个图片在区域内，播放音频
-            if (count == 2 ) {
+            if (count == 2) {
                 //document.getElementById('audio').play();
                 this.$refs.audio.play();
                 //document.querySelector('audio').play();
@@ -150,7 +197,8 @@ export default {
     align-items: flex-end;
     /* 靠下对齐 */
     height: 90vh;
-    padding-left: 15%; /* 右侧空白的宽度 */
+    padding-left: 15%;
+    /* 右侧空白的宽度 */
 }
 
 .container {
@@ -188,9 +236,21 @@ export default {
     cursor: grab;
     z-index: 2;
     /* 确保图片在上方 */
-    padding-right: 50px; /* 右侧空白的宽度 */
+    padding-right: 50px;
+    /* 右侧空白的宽度 */
 }
 
+.draggable-image1 {
+    width: 50px;
+    /* 设置图片宽度 */
+    height: 50px;
+    /* 设置图片高度 */
+    cursor: grab;
+    z-index: 2;
+    /* 确保图片在上方 */
+    padding-right: 50px;
+    /* 右侧空白的宽度 */
+}
 
 
 .controls {
@@ -235,10 +295,12 @@ export default {
 .drop-area {
     background-size: contain;
     background-position: center;
-    width: 345px; /* 根据计算结果设置宽度 */
-    height: 150px; /* 目标高度 */
+    width: 345px;
+    /* 根据计算结果设置宽度 */
+    height: 150px;
+    /* 目标高度 */
     /* 设置区域高度 */
-    background-image: url('../assets/test.png');
+    background-image: url('../assets/灰色无花纹玩具.png');
     background-repeat: no-repeat;
     margin-bottom: 30px;
     /* 向下移动 */
@@ -320,5 +382,4 @@ button.on {
         width: 80px;
     }
 }
-
 </style>

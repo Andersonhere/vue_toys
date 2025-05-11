@@ -4,8 +4,8 @@
         <div class="image-container">
 
             <div class="link-container">
-                <router-link to="/">
-                    <img src="../assets/返回主页.png" />
+                <router-link to="/E4G2_2">
+                    <img src="../assets/下一页.png" />
                 </router-link>
             </div>
 
@@ -36,20 +36,16 @@
 
 <script>
 export default {
-    name: 'SevenPage',
+    name: 'E4G2_1Page',
     data() {
         return {
             imageList: [
-                { src: require('../assets/大-黄-三角形.png'), x: 50, y: 100, alt: 'd' },
-                { src: require('../assets/大-黄-矩形.png'), x: 200, y: 100, alt: 'd' },
-                { src: require('../assets/大-绿-三角形.png'), x: 650, y: 100, alt: 'd' },
-                { src: require('../assets/大-绿-矩形.png'), x: 800, y: 100, alt: 'd' },
+                { src: require('../assets/红三角大.png'), x: 50, y: 100, alt: 'd' },
+                { src: require('../assets/绿三角大.png'), x: 350, y: 100, alt: 'd' },
             ],
             imageList1: [
-                { src: require('../assets/小-黄-三角形.png'), x: 350, y: 150, alt: 's' },
-                { src: require('../assets/小-黄-矩形.png'), x: 500, y: 150, alt: 's' },
-                { src: require('../assets/小-绿-三角形.png'), x: 950, y: 150, alt: 's' },
-                { src: require('../assets/小-绿-矩形.png'), x: 1100, y: 150, alt: 's' },
+                { src: require('../assets/红三角小.png'), x: 200, y: 150, alt: 's' },
+                { src: require('../assets/绿三角小.png'), x: 500, y: 150, alt: 's' },
             ],
             draggingIndex: null,
             activeListType: null,  // 当前拖动的列表类型
@@ -171,7 +167,7 @@ export default {
                 }
             });
             // 如果有两个图片在区域内，播放音频
-            if (count == 2 && this.imageList_alt[0] == this.imageList_alt[1]) {
+            if (count == 2) {
                 //document.getElementById('audio').play();
                 this.$refs.audio.play();
                 //document.querySelector('audio').play();
@@ -304,7 +300,7 @@ export default {
     height: 150px;
     /* 目标高度 */
     /* 设置区域高度 */
-    background-image: url('../assets/toy3_size rule.png');
+    background-image: url('../assets/蓝色无花纹玩具.png');
     background-repeat: no-repeat;
     margin-bottom: 30px;
     /* 向下移动 */

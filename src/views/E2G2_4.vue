@@ -4,8 +4,8 @@
         <div class="image-container">
 
             <div class="link-container">
-                <router-link to="/">
-                    <img src="../assets/返回主页.png" />
+                <router-link to="/Third">
+                    <img src="../assets/下一页.png" />
                 </router-link>
             </div>
 
@@ -30,16 +30,12 @@
 
 <script>
 export default {
-    name: 'ThirdPage',
+    name: 'E2G2_4Page',
     data() {
         return {
             imageList: [
-                { src: require('../assets/红色十字形.png'), x: 50, y: 100, alt: 'shi' },
-                { src: require('../assets/红色禁止符.png'), x: 200, y: 100, alt: 'jin' },
-                { src: require('../assets/绿色三角形.png'), x: 350, y: 100, alt: 's' },
-                { src: require('../assets/紫色三角形.png'), x: 500, y: 100, alt: 's' },
-                { src: require('../assets/蓝色矩形.png'), x: 650, y: 100, alt: 'j' },
-                { src: require('../assets/橙色圆形.png'), x: 800, y: 100, alt: 'y' },
+                { src: require('../assets/紫1.png'), x: 50, y: 100, alt: 'b' },
+                { src: require('../assets/紫2.png'), x: 200, y: 100, alt: 'b' },
             ],
             draggingIndex: null,
             offsetX: 0,
@@ -124,7 +120,7 @@ export default {
             });
 
             // 如果有两个图片在区域内，播放音频
-            if (count == 2 && this.imageList_alt[0] == this.imageList_alt[1]) {
+            if (count == 2) {
                 //document.getElementById('audio').play();
                 this.$refs.audio.play();
                 //document.querySelector('audio').play();
@@ -242,7 +238,7 @@ export default {
     width: 345px; /* 根据计算结果设置宽度 */
     height: 150px; /* 目标高度 */
     /* 设置区域高度 */
-    background-image: url('../assets/玩具2.png');
+    background-image: url('../assets/蓝色无花纹玩具.png');
     background-repeat: no-repeat;
     margin-bottom: 30px;
     /* 向下移动 */

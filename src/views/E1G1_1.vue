@@ -4,7 +4,7 @@
         <div class="image-container">
 
             <div class="link-container">
-                <router-link to="/second">
+                <router-link to="/E1G1_2">
                     <img src="../assets/下一页.png" />
                 </router-link>
             </div>
@@ -30,7 +30,7 @@
 
 <script>
 export default {
-    name: 'FirstPage',
+    name: 'E1G1_1',
     data() {
         return {
             imageList: [
