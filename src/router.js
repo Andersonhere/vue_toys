@@ -29,10 +29,12 @@ import E2G2_4 from './views/E2G2_4.vue';
 import E4G1 from './views/E4G1.vue';
 import E4G1_1 from './views/E4G1_1.vue';
 import E4G1_2 from './views/E4G1_2.vue';
+import E4G1_3 from './views/E4G1_3.vue';
 
 import E4G2 from './views/E4G2.vue';
 import E4G2_1 from './views/E4G2_1.vue';
 import E4G2_2 from './views/E4G2_2.vue';
+import E4G2_3 from './views/E4G2_3.vue';
 
 Vue.use(Router);
 
@@ -174,6 +176,11 @@ const routes = [
     name: 'E4G1_2',
     component: E4G1_2,
   },
+  {
+    path: '/E4G1_3',
+    name: 'E4G1_3',
+    component: E4G1_3,
+  },
 
   {
     path: '/E4G2',
@@ -190,6 +197,11 @@ const routes = [
     name: 'E4G2_2',
     component: E4G2_2,
   },
+  {
+    path: '/E4G2_3',
+    name: 'E4G2_3',
+    component: E4G2_3,
+  }
 ];
 
 const router = new Router({

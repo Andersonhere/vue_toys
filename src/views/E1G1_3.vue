@@ -5,7 +5,7 @@
 
             <div class="link-container">
                 <router-link to="/">
-                    <img src="../assets/下一页.png" />
+                    <img src="../assets/返回主页.png" />
                 </router-link>
             </div>
 

@@ -4,31 +4,14 @@
         <div class="image-container">
 
             <div class="link-container">
-                <router-link to="/E4G2_3">
-                    <img src="../assets/下一页.png" />
+                <router-link to="/">
+                    <img src="../assets/返回主页.png" />
                 </router-link>
             </div>
 
-            <img v-for="(img, index) in imageList" :key="index" :src="img.src" :alt="img.alt" class="draggable-image"
-                :style="{ left: img.x + 'px', top: img.y + 'px', position: 'absolute' }"
-                @mousedown="handleMouseDown($event, index, 'original')"
-                @touchstart="handleMouseDown($event, index, 'original')" />
-
-            <img v-for="(img, index) in imageList1" :key="index" :src="img.src" :alt="img.alt" class="draggable-image1"
-                :style="{ left: img.x + 'px', top: img.y + 'px', position: 'absolute' }"
-                @mousedown="handleMouseDown($event, index, 'small')"
-                @touchstart="handleMouseDown($event, index, 'small')" />
-
-            <div class="wrapper">
-                <div class="container">
-                    <div class="box button_container">
-                        <button :class="{ 'on': isOn }" @click="toggleSwitch($event)"
-                            @touchstart="toggleSwitch($event)"></button>
-                    </div>
-                    <div class="box line-area" ref="line"></div>
-                    <div class="box drop-area" ref="dropArea"></div>
-                </div>
-            </div>
+            <body>
+                <div class="text">你觉得什么样的积木能让刚刚的玩具发出音乐？</div>
+            </body>
         </div>
         <audio ref="audio" src="../music/A_little_story.mp3"></audio>
     </div>
@@ -36,15 +19,15 @@
 
 <script>
 export default {
-    name: 'E4G2_2Page',
+    name: 'E4G1_3',
     data() {
         return {
             imageList: [
-                { src: require('../assets/红圆大.png'), x: 50, y: 100, alt: 'd' },
+                { src: require('../assets/绿三角大.png'), x: 50, y: 100, alt: 'd' },
                 { src: require('../assets/绿圆大.png'), x: 350, y: 100, alt: 'd' },
             ],
             imageList1: [
-                { src: require('../assets/红圆小.png'), x: 200, y: 150, alt: 's' },
+                { src: require('../assets/绿三角小.png'), x: 200, y: 150, alt: 's' },
                 { src: require('../assets/绿圆小.png'), x: 500, y: 150, alt: 's' },
             ],
             draggingIndex: null,
@@ -207,6 +190,34 @@ export default {
     /* 使用 Flexbox */
 }
 
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f0f0f0;
+}
+
+.text {
+    white-space: nowrap;
+    /* 禁止换行 */
+    font-size: clamp(16px, 10vw, 100px);
+    /* 动态字体：最小16px，最大100px */
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+/* 移动端优化 */
+@media (max-width: 480px) {
+    .text {
+        font-size: 12vw;
+        /* 小屏幕更激进的自适应 */
+    }
+}
+
 .box {
     width: 200px;
     /* 固定宽度 */
@@ -300,7 +311,7 @@ export default {
     height: 150px;
     /* 目标高度 */
     /* 设置区域高度 */
-    background-image: url('../assets/蓝色无花纹玩具.png');
+    background-image: url('../assets/灰色无花纹玩具.png');
     background-repeat: no-repeat;
     margin-bottom: 30px;
     /* 向下移动 */
