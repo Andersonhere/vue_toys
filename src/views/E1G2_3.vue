@@ -34,12 +34,12 @@ export default {
     data() {
         return {
             imageList: [
-                { src: require('../assets/蓝色箭头.png'), x: 50, y: 100, alt: 'b' },
-                { src: require('../assets/蓝色心形.png'), x: 200, y: 100, alt: 'b' },
-                { src: require('../assets/橙色矩形.png'), x: 350, y: 100, alt: 'o' },
-                { src: require('../assets/绿色矩形.png'), x: 500, y: 100, alt: 'g' },
-                { src: require('../assets/黄色圆形.png'), x: 650, y: 100, alt: 'y' },
-                { src: require('../assets/紫色三角形.png'), x: 800, y: 100, alt: 'p' },
+                { src: require('../assets/红色十字形.png'), x: 50, y: 100, alt: 'shi' },
+                { src: require('../assets/红色禁止符.png'), x: 200, y: 100, alt: 'jin' },
+                { src: require('../assets/绿色三角形.png'), x: 350, y: 100, alt: 's' },
+                { src: require('../assets/紫色三角形.png'), x: 500, y: 100, alt: 's' },
+                { src: require('../assets/蓝色矩形.png'), x: 650, y: 100, alt: 'j' },
+                { src: require('../assets/橙色圆形.png'), x: 800, y: 100, alt: 'y' },
             ],
             draggingIndex: null,
             offsetX: 0,
@@ -242,7 +242,7 @@ export default {
     width: 345px; /* 根据计算结果设置宽度 */
     height: 150px; /* 目标高度 */
     /* 设置区域高度 */
-    background-image: url('../assets/玩具1.png');
+    background-image: url('../assets/玩具2.png');
     background-repeat: no-repeat;
     margin-bottom: 30px;
     /* 向下移动 */

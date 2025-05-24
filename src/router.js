@@ -11,20 +11,33 @@ import ImageGrid from './views/ImageGrid.vue';
 import E1G2_1 from './views/E1G2_1.vue';
 import E1G2_2 from './views/E1G2_2.vue';
 import E1G2_3 from './views/E1G2_3.vue';
-import E3G1 from './views/E3G1.vue';
-import E3G2 from './views/E3G2.vue';
-import E3G3 from './views/E3G3.vue';
+
 import Test from './views/test.vue';
 import E2G1 from './views/E2G1.vue';
 import E2G1_1 from './views/E2G1_1.vue';
 import E2G1_2 from './views/E2G1_2.vue';
 import E2G1_3 from './views/E2G1_3.vue';
 import E2G1_4 from './views/E2G1_4.vue';
+import E2G1_6 from './views/E2G1_6.vue';
+import E2G1_7 from './views/E2G1_7.vue';
+import E2G1_8 from './views/E2G1_8.vue';
+
 import E2G2 from './views/E2G2.vue';
 import E2G2_1 from './views/E2G2_1.vue';
 import E2G2_2 from './views/E2G2_2.vue';
 import E2G2_3 from './views/E2G2_3.vue';
 import E2G2_4 from './views/E2G2_4.vue';
+import E2G2_6 from './views/E2G2_6.vue';
+import E2G2_7 from './views/E2G2_7.vue';
+import E2G2_8 from './views/E2G2_8.vue';
+
+import E3G1 from './views/E3G1.vue';
+import E3G1_2 from './views/E3G1_2.vue';
+import E3G1_3 from './views/E3G1_3.vue';
+
+import E3G2 from './views/E3G2.vue';
+import E3G3 from './views/E3G3.vue';
+
 
 import E4G1 from './views/E4G1.vue';
 import E4G1_1 from './views/E4G1_1.vue';
@@ -53,7 +66,7 @@ const routes = [
     path: '/gallery',
     name: 'Gallery',
     component: Gallery,
-  },  
+  },
   {
     path: '/E1G1_1',
     name: 'E1G1_1',
@@ -89,21 +102,7 @@ const routes = [
     name: 'E1G2_3',
     component: E1G2_3,
   },
-  {
-    path: '/E3G1',
-    name: 'E3G1',
-    component: E3G1,
-  },
-  {
-    path: '/E3G2',
-    name: 'E3G2',
-    component: E3G2,
-  },
-  {
-    path: '/E3G3',
-    name: 'E3G3',
-    component: E3G3,
-  },
+
   {
     path: '/test',
     name: 'Test',
@@ -134,6 +133,21 @@ const routes = [
     name: 'E2G1_4',
     component: E2G1_4,
   },
+  {
+    path: '/E2G1_6',
+    name: 'E2G1_6',
+    component: E2G1_6,
+  },
+  {
+    path: '/E2G1_7',
+    name: 'E2G1_7',
+    component: E2G1_7,
+  },
+  {
+    path: '/E2G1_8',
+    name: 'E2G1_8',
+    component: E2G1_8,
+  },
 
   {
     path: '/E2G2',
@@ -159,6 +173,50 @@ const routes = [
     path: '/E2G2_4',
     name: 'E2G2_4',
     component: E2G2_4,
+  },
+  {
+    path: '/E2G2_6',
+    name: 'E2G2_6',
+    component: E2G2_6,
+  },
+  {
+    path: '/E2G2_7',
+    name: 'E2G2_7',
+    component: E2G2_7,
+  },
+  {
+    path: '/E2G2_8',
+    name: 'E2G2_8',
+    component: E2G2_8,
+  },
+
+
+  {
+    path: '/E3G1',
+    name: 'E3G1',
+    component: E3G1,
+  },
+  {
+    path: '/E3G1_2',
+    name: 'E3G1_2',
+    component: E3G1_2,
+  },
+  {
+    path: '/E3G1_3',
+    name: 'E3G1_3',
+    component: E3G1_3,
+  },
+
+
+  {
+    path: '/E3G2',
+    name: 'E3G2',
+    component: E3G2,
+  },
+  {
+    path: '/E3G3',
+    name: 'E3G3',
+    component: E3G3,
   },
 
   {

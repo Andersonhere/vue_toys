@@ -7,9 +7,9 @@
             <router-link to="/E1G2_1" class="large-link">Go to Experiment I : game 2 shape</router-link>
             <router-link to="/E2G1" class="large-link">Go to Experiment II : game 1 color</router-link>
             <router-link to="/E2G2" class="large-link">Go to Experiment II : game 2 shape</router-link>
-            <router-link to="/E3G1" class="large-link">Go to Experiment III : game 1 shape</router-link>
-            <router-link to="/E3G2" class="large-link">Go to Experiment III : game 2 color</router-link>
-            <router-link to="/E3G3" class="large-link">Go to Experiment III : game 3 size</router-link>
+            <router-link to="/E3G1" class="large-link">Go to Experiment III : game 1 color </router-link>
+            <router-link to="/E3G2" class="large-link">Go to Experiment III : game 2 shape</router-link>
+            <router-link to="/E3G3" class="large-link">Go to Experiment III : game 3 texture</router-link>
             <router-link to="/E4G1" class="large-link">Go to Experiment IV : game 1 color</router-link>
             <router-link to="/E4G2" class="large-link">Go to Experiment IV : game 2 shape</router-link>
 

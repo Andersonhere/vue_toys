@@ -34,8 +34,8 @@ export default {
     data() {
         return {
             imageList: [
-                { src: require('../assets/青绿1.png'), x: 50, y: 100, alt: 'b' },
-                { src: require('../assets/青绿1.png'), x: 200, y: 100, alt: 'b' },
+                { src: require('../assets/0524/青绿1.png'), x: 50, y: 100, alt: 'b' },
+                { src: require('../assets/0524/青绿2.png'), x: 200, y: 100, alt: 'b' },
             ],
             draggingIndex: null,
             offsetX: 0,

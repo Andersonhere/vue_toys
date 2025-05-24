@@ -4,8 +4,8 @@
         <div class="image-container">
 
             <div class="link-container">
-                <router-link to="/">
-                    <img src="../assets/返回主页.png" />
+                <router-link to="/E3G1_2">
+                    <img src="../assets/下一页.png" />
                 </router-link>
             </div>
 
@@ -40,16 +40,20 @@ export default {
     data() {
         return {
             imageList: [
-                { src: require('../assets/大-黄-三角形.png'), x: 50, y: 100, alt: 'y' },
-                { src: require('../assets/大-黄-矩形.png'), x: 200, y: 100, alt: 'y' },
-                { src: require('../assets/大-绿-三角形.png'), x: 650, y: 100, alt: 'g' },
-                { src: require('../assets/大-绿-矩形.png'), x: 800, y: 100, alt: 'g' },
+                { src: require('../assets/0524/黄色矩形有纹理.png'), x: 50, y: 100, alt: 'j' },
+                { src: require('../assets/0524/绿色三角形.png'), x: 200, y: 100, alt: 'san' },
+                { src: require('../assets/0524/绿色矩形有纹理.png'), x: 350, y: 100, alt: 'j' },
+                { src: require('../assets/0524/黄色三角形.png'), x: 500, y: 100, alt: 'san' },
+                { src: require('../assets/0524/绿色矩形.png'), x: 650, y: 100, alt: 'j' },
+                { src: require('../assets/0524/绿色三角形有纹理.png'), x: 800, y: 100, alt: 'san' },
+                { src: require('../assets/0524/黄色矩形.png'), x: 950, y: 100, alt: 'j' },
+                { src: require('../assets/0524/黄色三角形有纹理.png'), x: 1100, y: 100, alt: 'san' },
             ],
             imageList1: [
-                { src: require('../assets/小-黄-三角形.png'), x: 350, y: 150, alt: 'y' },
-                { src: require('../assets/小-黄-矩形.png'), x: 500, y: 150, alt: 'y' },
-                { src: require('../assets/小-绿-三角形.png'), x: 950, y: 150, alt: 'g' },
-                { src: require('../assets/小-绿-矩形.png'), x: 1100, y: 150, alt: 'g' },
+                // { src: require('../assets/小-黄-三角形.png'), x: 350, y: 150, alt: 'y' },
+                // { src: require('../assets/小-黄-矩形.png'), x: 500, y: 150, alt: 'y' },
+                // { src: require('../assets/小-绿-三角形.png'), x: 950, y: 150, alt: 'g' },
+                // { src: require('../assets/小-绿-矩形.png'), x: 1100, y: 150, alt: 'g' },
             ],
             draggingIndex: null,
             activeListType: null,  // 当前拖动的列表类型

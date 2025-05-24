@@ -34,12 +34,12 @@ export default {
     data() {
         return {
             imageList: [
-                { src: require('../assets/红色十字形.png'), x: 50, y: 100, alt: 'shi' },
-                { src: require('../assets/红色禁止符.png'), x: 200, y: 100, alt: 'jin' },
-                { src: require('../assets/绿色三角形.png'), x: 350, y: 100, alt: 's' },
-                { src: require('../assets/紫色三角形.png'), x: 500, y: 100, alt: 's' },
-                { src: require('../assets/蓝色矩形.png'), x: 650, y: 100, alt: 'j' },
-                { src: require('../assets/橙色圆形.png'), x: 800, y: 100, alt: 'y' },
+                { src: require('../assets/0524/橙色矩形.png'), x: 50, y: 100, alt: 'j' },
+                { src: require('../assets/0524/橙色三角.png'), x: 200, y: 100, alt: 'o' },
+                // { src: require('../assets/绿色三角形.png'), x: 350, y: 100, alt: 's' },
+                // { src: require('../assets/紫色三角形.png'), x: 500, y: 100, alt: 's' },
+                { src: require('../assets/0524/红色星.png'), x: 650, y: 100, alt: 'xing' },
+                { src: require('../assets/0524/蓝色星.png'), x: 800, y: 100, alt: 'xing' },
             ],
             draggingIndex: null,
             offsetX: 0,
