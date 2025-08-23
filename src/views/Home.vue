@@ -2,17 +2,34 @@
     <div>
         <div class="link-container">
             <h1 class="title">Home Page</h1>
-            <router-link to="/test" class="large-link">Go to 练习: game0</router-link>
-            <router-link to="/E1G1_1" class="large-link">Go to Experiment I : game 1 color</router-link>
-            <router-link to="/E1G2_1" class="large-link">Go to Experiment I : game 2 shape</router-link>
-            <router-link to="/E2G1" class="large-link">Go to Experiment II : game 1 color</router-link>
-            <router-link to="/E2G2" class="large-link">Go to Experiment II : game 2 shape</router-link>
-            <router-link to="/E3G1" class="large-link">Go to Experiment III : game 1 color </router-link>
-            <router-link to="/E3G2" class="large-link">Go to Experiment III : game 2 shape</router-link>
-            <router-link to="/E3G3" class="large-link">Go to Experiment III : game 3 texture</router-link>
-            <router-link to="/E4G1" class="large-link">Go to Experiment IV : game 1 color</router-link>
-            <router-link to="/E4G2" class="large-link">Go to Experiment IV : game 2 shape</router-link>
+            <!-- <router-link to="/test" class="large-link">Go to 练习: game0</router-link> -->
+            <router-link to="/E1G1_1" class="large-link">E1 : game 1 color</router-link>
+            <router-link to="/E1G2_1" class="large-link">E1 : game 2 shape</router-link>
 
+            <router-link to="/E2G1_1" class="large-link">E2 : game 1 color</router-link>
+            <router-link to="/E2G2_1" class="large-link">E2 : game 2 shape</router-link>
+
+            <router-link to="/E3G1C1_1" class="large-link">E3 : game 1 color1</router-link>
+            <router-link to="/E3G1C2_1" class="large-link">E3 : game 2 color2</router-link>
+            <router-link to="/E3G2S1_1" class="large-link">E3 : game 1 shape1</router-link>
+            <router-link to="/E3G2S2_1" class="large-link">E3 : game 2 shape2</router-link>
+
+            <router-link to="/E4G1_1" class="large-link">E4 : game 1 color</router-link>
+            <router-link to="/E4G2_1" class="large-link">E4 : game 2 shape</router-link>
+
+            <!-- <router-link to="/E5G1_!" class="large-link">E5 : game 1 shape</router-link> -->
+
+            <router-link to="/E6G1_1" class="large-link">E6H: game 1 color </router-link>
+            <router-link to="/E6G2_1" class="large-link">E6H: game 2 shape </router-link>
+
+            <router-link to="/E7G1_1" class="large-link">E7H: game 1 color </router-link>
+            <router-link to="/E7G2_1" class="large-link">E7H: game 2 shape </router-link>
+            <router-link to="/E7G3_1" class="large-link">E7H: game 3 texture </router-link>
+
+
+            <router-link to="/E8G1_1" class="large-link">E8H: game 1 color </router-link>
+            <router-link to="/E8G2_1" class="large-link">E8H: game 2 shape </router-link>
+            <router-link to="/E8G3_1" class="large-link">E8H: game 3 texture </router-link>
         </div>
     </div>
 </template>
@@ -35,9 +52,11 @@ export default {
     height: 100vh;
     /* 视口高度 */
 }
+
 .large-link {
-  font-size: 30px;
+    font-size: 30px;
 }
+
 .title {
     margin-bottom: 100px;
     /* 标题与链接之间的间隔 */

@@ -2,7 +2,7 @@ import Vue from 'vue';
 import App from './App.vue';
 import VueGrabbingBox from 'vue-grabbing-box';
 import Draggable from 'vuedraggable';
-import router from './router'; // 导入 router
+import router from './router/index'; // 导入 router
 
 Vue.use(VueGrabbingBox);
 Vue.use(Draggable);
