@@ -4,7 +4,7 @@
         <div class="image-container">
 
             <div class="link-container">
-                <router-link to="/E7G1_2">
+                <router-link to="/E7G2_2">
                     <img src="../../../assets/下一页.png" />
                 </router-link>
             </div>
@@ -30,30 +30,30 @@
                 </div>
             </div>
         </div>
-        <audio ref="audio" src="../../../music/Annie_s_short.mp3"></audio>
+        <audio ref="audio" src="../../../music/Claudio The Worm.mp3"></audio>
     </div>
 </template>
 
 <script>
 export default {
-    name: 'E3G2',
+    name: 'E3G1',
     data() {
         return {
             imageList: [
-                { src: require('../../../assets/0524/黄色矩形有纹理.png'), x: 50, y: 100, alt: 'j' },
-                { src: require('../../../assets/0524/绿色三角形.png'), x: 200, y: 100, alt: 'san' },
-                { src: require('../../../assets/0524/绿色矩形有纹理.png'), x: 350, y: 100, alt: 'j' },
-                { src: require('../../../assets/0524/黄色三角形.png'), x: 500, y: 100, alt: 'san' },
-                { src: require('../../../assets/0524/绿色矩形.png'), x: 650, y: 100, alt: 'j' },
-                { src: require('../../../assets/0524/绿色三角形有纹理.png'), x: 800, y: 100, alt: 'san' },
-                { src: require('../../../assets/0524/黄色矩形.png'), x: 950, y: 100, alt: 'j' },
-                { src: require('../../../assets/0524/黄色三角形有纹理.png'), x: 1100, y: 100, alt: 'san' },
+                { src: require('../../../assets/1024/E7H红矩形.png'), x: 50, y: 100, alt: 'j' },
+                { src: require('../../../assets/1024/E7H红圆形.png'), x: 200, y: 100, alt: 'y' },
+                { src: require('../../../assets/1024/E7H红三角形.png'), x: 350, y: 100, alt: 's' },
+                { src: require('../../../assets/1024/E7H蓝矩形.png'), x: 500, y: 100, alt: 'j' },
+                { src: require('../../../assets/1024/E7H蓝圆形.png'), x: 650, y: 100, alt: 'y' },
+                { src: require('../../../assets/1024/E7H蓝三角形.png'), x: 800, y: 100, alt: 's' },
+                { src: require('../../../assets/1024/E7H红矩形.png'), x: 950, y: 100, alt: 'j' },
+                { src: require('../../../assets/1024/E7H蓝圆形.png'), x: 1100, y: 100, alt: 'y' },
             ],
             imageList1: [
-                // { src: require('../../../assets/小-黄-三角形.png'), x: 350, y: 150, alt: 'y' },
-                // { src: require('../../../assets/小-黄-矩形.png'), x: 500, y: 150, alt: 'y' },
-                // { src: require('../../../assets/小-绿-三角形.png'), x: 950, y: 150, alt: 'g' },
-                // { src: require('../../../assets/小-绿-矩形.png'), x: 1100, y: 150, alt: 'g' },
+                // { src: require('../../../assets/小-黄-三角形.png'), x: 350, y: 150, alt: 's' },
+                // { src: require('../../../assets/小-黄-矩形.png'), x: 500, y: 150, alt: 'j' },
+                // { src: require('../../../assets/小-绿-三角形.png'), x: 950, y: 150, alt: 's' },
+                // { src: require('../../../assets/小-绿-矩形.png'), x: 1100, y: 150, alt: 'j' },
             ],
             draggingIndex: null,
             activeListType: null,  // 当前拖动的列表类型
@@ -119,7 +119,6 @@ export default {
         },
         handleMouseUp() {
             this.draggingIndex = null;
-            this.activeListType = null;
         },
         checkDropArea() {
             if (!this.isOn) {
@@ -209,10 +208,7 @@ export default {
     padding-left: 15%;
     /* 右侧空白的宽度 */
 }
-.draggable-image, .draggable-image1 {
-  will-change: transform; /* 启用硬件加速 */
-  touch-action: none;     /* 禁止浏览器默认触摸行为 */
-}
+
 .container {
     display: flex;
     align-items: flex-end;
@@ -312,7 +308,7 @@ export default {
     height: 150px;
     /* 目标高度 */
     /* 设置区域高度 */
-    background-image: url('../../../assets/toy2_shape rule.png');
+    background-image: url('../../../assets/toy1_color rule.png');
     background-repeat: no-repeat;
     margin-bottom: 30px;
     /* 向下移动 */

@@ -10,7 +10,7 @@
             <router-link to="/E2G2_1" class="large-link">E2 : game 2 shape</router-link>
 
             <router-link to="/E3G1C1_1" class="large-link">E3 : game 1 color1</router-link>
-            <router-link to="/E3G1C2_1" class="large-link">E3 : game 2 color2</router-link>
+            <router-link to="/E3G1C2_1" class="large-link">E3 : game 1 color2</router-link>
             <router-link to="/E3G2S1_1" class="large-link">E3 : game 1 shape1</router-link>
             <router-link to="/E3G2S2_1" class="large-link">E3 : game 2 shape2</router-link>
 
@@ -22,9 +22,10 @@
             <router-link to="/E6G1_1" class="large-link">E6H: game 1 color </router-link>
             <router-link to="/E6G2_1" class="large-link">E6H: game 2 shape </router-link>
 
-            <router-link to="/E7G1_1" class="large-link">E7H: game 1 color </router-link>
-            <router-link to="/E7G2_1" class="large-link">E7H: game 2 shape </router-link>
-            <router-link to="/E7G3_1" class="large-link">E7H: game 3 texture </router-link>
+            <router-link to="/E7G1_1" class="large-link">E7H: game 1 color1 </router-link>
+            <router-link to="/E7G1_3" class="large-link">E7H: game 1 color2 </router-link>
+            <router-link to="/E7G2_1" class="large-link">E7H: game 2 shape1 </router-link>
+            <router-link to="/E7G2_3" class="large-link">E7H: game 2 shape2 </router-link>
 
 
             <router-link to="/E8G1_1" class="large-link">E8H: game 1 color </router-link>

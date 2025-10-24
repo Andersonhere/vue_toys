@@ -40,14 +40,14 @@ export default {
     data() {
         return {
             imageList: [
-                { src: require('../../../assets/0524/黄色矩形有纹理.png'), x: 50, y: 100, alt: 'y' },
-                { src: require('../../../assets/0524/绿色三角形.png'), x: 200, y: 100, alt: 'g' },
-                { src: require('../../../assets/0524/绿色矩形有纹理.png'), x: 350, y: 100, alt: 'g' },
-                { src: require('../../../assets/0524/黄色三角形.png'), x: 500, y: 100, alt: 'y' },
-                { src: require('../../../assets/0524/绿色矩形.png'), x: 650, y: 100, alt: 'g' },
-                { src: require('../../../assets/0524/绿色三角形有纹理.png'), x: 800, y: 100, alt: 'g' },
-                { src: require('../../../assets/0524/黄色矩形.png'), x: 950, y: 100, alt: 'y' },
-                { src: require('../../../assets/0524/黄色三角形有纹理.png'), x: 1100, y: 100, alt: 'y' },
+                { src: require('../../../assets/1024/E7H红矩形.png'), x: 50, y: 100, alt: 'r' },
+                { src: require('../../../assets/1024/E7H红圆形.png'), x: 200, y: 100, alt: 'r' },
+                { src: require('../../../assets/1024/E7H红三角形.png'), x: 350, y: 100, alt: 'r' },
+                { src: require('../../../assets/1024/E7H蓝矩形.png'), x: 500, y: 100, alt: 'b' },
+                { src: require('../../../assets/1024/E7H蓝圆形.png'), x: 650, y: 100, alt: 'b' },
+                { src: require('../../../assets/1024/E7H蓝三角形.png'), x: 800, y: 100, alt: 'b' },
+                { src: require('../../../assets/1024/E7H红矩形.png'), x: 950, y: 100, alt: 'r' },
+                { src: require('../../../assets/1024/E7H蓝圆形.png'), x: 1100, y: 100, alt: 'b' },
             ],
             imageList1: [
                 // { src: require('../../../assets/小-黄-三角形.png'), x: 350, y: 150, alt: 's' },

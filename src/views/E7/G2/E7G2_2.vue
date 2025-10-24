@@ -1,10 +1,8 @@
 <template>
     <div id="app" @mousemove="handleMouseMove" @mouseup="handleMouseUp" @touchmove="handleMouseMove"
         @touchend="handleMouseUp">
-        <h2>
-            下面两组积木，你觉得哪一组能让玩具发出音乐？
-        </h2>
         <div class="image-container">
+
             <div class="link-container">
                 <router-link to="/">
                     <img src="../../../assets/返回主页.png" />
@@ -32,28 +30,30 @@
                 </div>
             </div>
         </div>
-        <audio ref="audio" src="../../../music/A_little_story.mp3"></audio>
+        <audio ref="audio" src="../../../music/Claudio The Worm.mp3"></audio>
     </div>
 </template>
 
 <script>
 export default {
-    name: 'E4G1_1Page',
+    name: 'E3G1',
     data() {
         return {
             imageList: [
-                { src: require('../../../assets/0823/E8H橙矩形有花纹.png'), x: 50, y: 100, alt: 'o' },
-                // { src: require('../../../assets/0606/E3E8H红三角形.png'), x: 200, y: 100, alt: 'g' },
-                { src: require('../../../assets/0823/E8H橙三角无花纹.png'), x: 350, y: 100, alt: 'o' },
-                // { src: require('../../../assets/0524/黄色三角形.png'), x: 500, y: 100, alt: 'y' },
-                // { src: require('../../../assets/0606/E2E8H草绿圆形.png'), x: 650, y: 100, alt: 'l' },
-                { src: require('../../../assets/0823/E8H蓝三角无花纹.png'), x: 800, y: 100, alt: 'o' },
-                // { src: require('../../../assets/0606/E8H草绿梯形.png'), x: 950, y: 100, alt: 'l' },
-                { src: require('../../..//assets/0823/E8H橙三角有花纹.png'), x: 1100, y: 100, alt: 'l' },
+                { src: require('../../../assets/1024/E7H蓝梯形.png'), x: 50, y: 100, alt: 't' },
+                { src: require('../../../assets/1024/E7H红梯形.png'), x: 200, y: 100, alt: 't' },
+                // { src: require('../../../assets/1024/E7H绿色矩形有纹理.png'), x: 350, y: 100, alt: 'g' },
+                // { src: require('../../../assets/1024/E7H黄色三角形.png'), x: 500, y: 100, alt: 'y' },
+                // { src: require('../../../assets/1024/E7H绿色矩形.png'), x: 650, y: 100, alt: 'g' },
+                // { src: require('../../../assets/1024/E7H绿色三角形有纹理.png'), x: 800, y: 100, alt: 'g' },
+                { src: require('../../../assets/1024/E7H绿矩形.png'), x: 950, y: 100, alt: 'j' },
+                { src: require('../../../assets/1024/E7H绿圆形.png'), x: 1100, y: 100, alt: 'y' },
             ],
             imageList1: [
-                // { src: require('../../../assets/红三角小.png'), x: 200, y: 150, alt: 's' },
-                // { src: require('../../../assets/红三角小.png'), x: 500, y: 150, alt: 's' },
+                // { src: require('../../../assets/小-黄-三角形.png'), x: 350, y: 150, alt: 's' },
+                // { src: require('../../../assets/小-黄-矩形.png'), x: 500, y: 150, alt: 'j' },
+                // { src: require('../../../assets/小-绿-三角形.png'), x: 950, y: 150, alt: 's' },
+                // { src: require('../../../assets/小-绿-矩形.png'), x: 1100, y: 150, alt: 'j' },
             ],
             draggingIndex: null,
             activeListType: null,  // 当前拖动的列表类型
@@ -227,25 +227,7 @@ export default {
     background-position: center;
     /* 背景居中 */
 }
-.hint-buttons {
-    display: flex;
-    gap: 15px;
-}
 
-.hint-btn {
-    width: 80px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #f8f9fa;
-    border: 2px solid #dee2e6;
-    border-radius: 6px;
-    font-weight: bold;
-    color: #495057;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    cursor: default;
-}
 #app {
     text-align: center;
     position: relative;
@@ -326,7 +308,7 @@ export default {
     height: 150px;
     /* 目标高度 */
     /* 设置区域高度 */
-    background-image: url('../../../assets/蓝色有花纹玩具.png');
+    background-image: url('../../../assets/toy1_color rule.png');
     background-repeat: no-repeat;
     margin-bottom: 30px;
     /* 向下移动 */

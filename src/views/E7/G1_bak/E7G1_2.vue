@@ -1,59 +1,89 @@
 <template>
     <div id="app" @mousemove="handleMouseMove" @mouseup="handleMouseUp" @touchmove="handleMouseMove"
         @touchend="handleMouseUp">
-        <h2>
-            下面两组积木，你觉得哪一组能让玩具发出音乐？
-        </h2>
         <div class="image-container">
+
             <div class="link-container">
-                <router-link to="/">
-                    <img src="../../../assets/返回主页.png" />
+                <router-link to="/E7G1_3">
+                    <img src="../../../assets/下一页.png" />
                 </router-link>
             </div>
 
-            <img v-for="(img, index) in imageList" :key="index" :src="img.src" :alt="img.alt" class="draggable-image"
-                :style="{ left: img.x + 'px', top: img.y + 'px', position: 'absolute' }"
-                @mousedown="handleMouseDown($event, index, 'original')"
-                @touchstart="handleMouseDown($event, index, 'original')" />
+            <div class="question-container" style="background: white; padding: 20px;">
+                <h2 style="margin-bottom: 30px; text-align: center;">下面有三组积木，你觉得哪一组能让刚刚的玩具发出音乐呢？</h2>
 
-            <img v-for="(img, index) in imageList1" :key="index" :src="img.src" :alt="img.alt" class="draggable-image1"
-                :style="{ left: img.x + 'px', top: img.y + 'px', position: 'absolute' }"
-                @mousedown="handleMouseDown($event, index, 'small')"
-                @touchstart="handleMouseDown($event, index, 'small')" />
-
-            <div class="wrapper">
-                <div class="container">
-                    <div class="box button_container">
-                        <button :class="{ 'on': isOn }" @click="toggleSwitch($event)"
-                            @touchstart="toggleSwitch($event)"></button>
+                <!-- 主要修改点：增加flex容器宽度和居中属性 -->
+                <div class="options" style="
+    display: flex; 
+    gap: 40px;
+    justify-content: center;  /* 新增居中属性 */
+    width: 100%;              /* 确保容器宽度撑满 */
+    padding: 0 20px;          /* 防止边缘挤压 */
+  ">
+                    <!-- 选项A -->
+                    <div class="option" style="
+      border: 2px solid #ccc; 
+      padding: 15px;
+      min-width: 200px;       /* 防止内容挤压 */
+      text-align: center;     /* 内部元素居中 */
+    ">
+                        <div class="blocks" style="
+        display: flex; 
+        gap: 10px;
+        justify-content: center;  /* 图片居中 */
+      ">
+                            <img src="../../../assets/0524/黄色矩形有纹理.png" alt="黄色网格方块" style="width: 80px; height: 80px;" />
+                            <img src="../../../assets/0524/黄色三角形.png" alt="黄色网格三角" style="width: 80px; height: 80px;" />
+                        </div>
+                        <div style="text-align: center; margin-top: 10px;">A</div>
                     </div>
-                    <div class="box line-area" ref="line"></div>
-                    <div class="box drop-area" ref="dropArea"></div>
+
+                    <!-- 选项B 保持相同结构 -->
+                    <div class="option"
+                        style="border: 2px solid #ccc; padding: 15px; min-width: 200px; text-align: center;">
+                        <div class="blocks" style="display: flex; gap: 10px; justify-content: center;">
+                            <img src="../../../assets/0524/黄色矩形有纹理.png" alt="黄色网格方块" style="width: 80px; height: 80px;" />
+                            <img src="../../../assets/0524/绿色矩形.png" alt="绿色实心方块" style="width: 80px; height: 80px;" />
+                        </div>
+                        <div style="text-align: center; margin-top: 10px;">B</div>
+                    </div>
+
+                    <!-- 选项C 保持相同结构 -->
+                    <div class="option"
+                        style="border: 2px solid #ccc; padding: 15px; min-width: 200px; text-align: center;">
+                        <div class="blocks" style="display: flex; gap: 10px; justify-content: center;">
+                            <img src="../../../assets/0524/绿色矩形有纹理.png" alt="绿色网格方块" style="width: 80px; height: 80px;" />
+                            <img src="../../../assets/0524/黄色三角形有纹理.png" alt="黄色网格三角" style="width: 80px; height: 80px;" />
+                        </div>
+                        <div style="text-align: center; margin-top: 10px;">C</div>
+                    </div>
                 </div>
             </div>
         </div>
-        <audio ref="audio" src="../../../music/A_little_story.mp3"></audio>
+        <audio ref="audio" src="../../../music/Claudio The Worm.mp3"></audio>
     </div>
 </template>
 
 <script>
 export default {
-    name: 'E4G1_1Page',
+    name: 'E3G1',
     data() {
         return {
             imageList: [
-                { src: require('../../../assets/0823/E8H橙矩形有花纹.png'), x: 50, y: 100, alt: 'o' },
-                // { src: require('../../../assets/0606/E3E8H红三角形.png'), x: 200, y: 100, alt: 'g' },
-                { src: require('../../../assets/0823/E8H橙三角无花纹.png'), x: 350, y: 100, alt: 'o' },
-                // { src: require('../../../assets/0524/黄色三角形.png'), x: 500, y: 100, alt: 'y' },
-                // { src: require('../../../assets/0606/E2E8H草绿圆形.png'), x: 650, y: 100, alt: 'l' },
-                { src: require('../../../assets/0823/E8H蓝三角无花纹.png'), x: 800, y: 100, alt: 'o' },
-                // { src: require('../../../assets/0606/E8H草绿梯形.png'), x: 950, y: 100, alt: 'l' },
-                { src: require('../../..//assets/0823/E8H橙三角有花纹.png'), x: 1100, y: 100, alt: 'l' },
+                { src: require('../../../assets/0524/黄色矩形有纹理.png'), x: 50, y: 100, alt: 'y' },
+                { src: require('../../../assets/0524/绿色三角形.png'), x: 200, y: 100, alt: 'g' },
+                { src: require('../../../assets/0524/绿色矩形有纹理.png'), x: 350, y: 100, alt: 'g' },
+                { src: require('../../../assets/0524/黄色三角形.png'), x: 500, y: 100, alt: 'y' },
+                { src: require('../../../assets/0524/绿色矩形.png'), x: 650, y: 100, alt: 'g' },
+                { src: require('../../../assets/0524/绿色三角形有纹理.png'), x: 800, y: 100, alt: 'g' },
+                { src: require('../../../assets/0524/黄色矩形.png'), x: 950, y: 100, alt: 'y' },
+                { src: require('../../../assets/0524/黄色三角形有纹理.png'), x: 1100, y: 100, alt: 'y' },
             ],
             imageList1: [
-                // { src: require('../../../assets/红三角小.png'), x: 200, y: 150, alt: 's' },
-                // { src: require('../../../assets/红三角小.png'), x: 500, y: 150, alt: 's' },
+                // { src: require('../../../assets/小-黄-三角形.png'), x: 350, y: 150, alt: 's' },
+                // { src: require('../../../assets/小-黄-矩形.png'), x: 500, y: 150, alt: 'j' },
+                // { src: require('../../../assets/小-绿-三角形.png'), x: 950, y: 150, alt: 's' },
+                // { src: require('../../../assets/小-绿-矩形.png'), x: 1100, y: 150, alt: 'j' },
             ],
             draggingIndex: null,
             activeListType: null,  // 当前拖动的列表类型
@@ -227,25 +257,7 @@ export default {
     background-position: center;
     /* 背景居中 */
 }
-.hint-buttons {
-    display: flex;
-    gap: 15px;
-}
 
-.hint-btn {
-    width: 80px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #f8f9fa;
-    border: 2px solid #dee2e6;
-    border-radius: 6px;
-    font-weight: bold;
-    color: #495057;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    cursor: default;
-}
 #app {
     text-align: center;
     position: relative;
@@ -326,7 +338,7 @@ export default {
     height: 150px;
     /* 目标高度 */
     /* 设置区域高度 */
-    background-image: url('../../../assets/蓝色有花纹玩具.png');
+    background-image: url('../../../assets/toy1_color rule.png');
     background-repeat: no-repeat;
     margin-bottom: 30px;
     /* 向下移动 */

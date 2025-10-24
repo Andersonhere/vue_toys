@@ -12,7 +12,7 @@ const generateRoutes = (basePath, prefix, groupSize) => {
   };
 
 export default [
-    ...generateRoutes('E7/G1', 'E7G1',3),
-    ...generateRoutes('E7/G2', 'E7G2', 1),
-    ...generateRoutes('E7/G3', 'E7G3', 1),
+    ...generateRoutes('E7/G1', 'E7G1',4),
+    ...generateRoutes('E7/G2', 'E7G2', 4),
+    // ...generateRoutes('E7/G3', 'E7G3', 1),
   ];
