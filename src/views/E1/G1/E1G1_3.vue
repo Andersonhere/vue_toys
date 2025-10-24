@@ -33,14 +33,14 @@ export default {
     name: 'E1G1_3',
     data() {
         return {
-            imageList: [
-                { src: require('../../../assets/蓝色箭头.png'), x: 50, y: 100, alt: 'b' },
-                { src: require('../../../assets/蓝色心形.png'), x: 200, y: 100, alt: 'b' },
-                { src: require('../../../assets/橙色矩形.png'), x: 350, y: 100, alt: 'o' },
-                { src: require('../../../assets/绿色矩形.png'), x: 500, y: 100, alt: 'g' },
-                { src: require('../../../assets/黄色圆形.png'), x: 650, y: 100, alt: 'y' },
-                { src: require('../../../assets/紫色三角形.png'), x: 800, y: 100, alt: 'p' },
-            ],
+            imageList: this.generateImageList(this.shuffleArray([
+                { src: require('../../../assets/蓝色箭头.png'), alt: 'b' },
+                { src: require('../../../assets/蓝色心形.png'), alt: 'b' },
+                { src: require('../../../assets/橙色矩形.png'), alt: 'o' },
+                { src: require('../../../assets/绿色矩形.png'), alt: 'g' },
+                { src: require('../../../assets/黄色圆形.png'), alt: 'y' },
+                { src: require('../../../assets/紫色三角形.png'), alt: 'p' },
+            ])),
             draggingIndex: null,
             offsetX: 0,
             offsetY: 0,
@@ -50,6 +50,23 @@ export default {
         };
     },
     methods: {
+        shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        },
+        generateImageList(images) {
+            const startX = 50;
+            const startY = 100;
+            const gap = 150;
+            return images.map((image, index) => ({
+                ...image,
+                x: startX + index * gap,
+                y: startY,
+            }));
+        },
         toggleSwitch(event) {
             this.isOn = !this.isOn;
             if (!this.isOn) {

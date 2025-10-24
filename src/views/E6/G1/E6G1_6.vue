@@ -33,16 +33,16 @@ export default {
     name: 'E1G1_1',
     data() {
         return {
-            imageList: [
-                { src: require('../../../assets/0524/蓝色矩形.png'), x: 50, y: 100, alt: 'b' },
-                { src: require('../../../assets/0524/红色圆形.png'), x: 200, y: 100, alt: 'r' },
-                { src: require('../../../assets/0524/蓝色圆形.png'), x: 350, y: 100, alt: 'b' },
-                { src: require('../../../assets/0524/红色三角形.png'), x: 500, y: 100, alt: 'r' },
-                { src: require('../../../assets/0524/黄色矩形.png'), x: 650, y: 100, alt: 'y' },
-                { src: require('../../../assets/0524/蓝色三角形.png'), x: 800, y: 100, alt: 'b' },
-                { src: require('../../../assets/0524/黄色圆形.png'), x: 950, y: 100, alt: 'y' },
-                { src: require('../../../assets/0524/黄色三角形.png'), x: 1100, y: 100, alt: 'y' },
-            ],
+            imageList: this.generateImageList(this.shuffleArray([
+                { src: require('../../../assets/0524/蓝色矩形.png'), alt: 'b' },
+                { src: require('../../../assets/0524/红色圆形.png'),  alt: 'r' },
+                { src: require('../../../assets/0524/蓝色圆形.png'),  alt: 'b' },
+                { src: require('../../../assets/0524/红色三角形.png'),  alt: 'r' },
+                { src: require('../../../assets/0524/黄色矩形.png'), alt: 'y' },
+                { src: require('../../../assets/0524/蓝色三角形.png'), alt: 'b' },
+                { src: require('../../../assets/0524/黄色圆形.png'), alt: 'y' },
+                { src: require('../../../assets/0524/黄色三角形.png'),  alt: 'y' },
+                ])),
             draggingIndex: null,
             offsetX: 0,
             offsetY: 0,
@@ -52,6 +52,23 @@ export default {
         };
     },
     methods: {
+        shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        },
+        generateImageList(images) {
+            const startX = 50;
+            const startY = 100;
+            const gap = 150;
+            return images.map((image, index) => ({
+                ...image,
+                x: startX + index * gap,
+                y: startY,
+            }));
+        },
         toggleSwitch(event) {
             this.isOn = !this.isOn;
             if (!this.isOn) {

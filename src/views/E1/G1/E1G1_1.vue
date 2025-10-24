@@ -33,16 +33,16 @@ export default {
     name: 'E1G1_1',
     data() {
         return {
-            imageList: [
-                { src: require('../../../assets/蓝色三角形.png'), x: 50, y: 100, alt: 'b' },
-                { src: require('../../../assets/蓝色三角形.png'), x: 200, y: 100, alt: 'b' },
-                { src: require('../../../assets/黄色矩形.png'), x: 350, y: 100, alt: 'y' },
-                { src: require('../../../assets/蓝色矩形.png'), x: 500, y: 100, alt: 'b' },
-                { src: require('../../../assets/黄色三角形.png'), x: 650, y: 100, alt: 'y' },
-                { src: require('../../../assets/黄色三角形.png'), x: 800, y: 100, alt: 'y' },
-                { src: require('../../../assets/蓝色圆形.png'), x: 950, y: 100, alt: 'b' },
-                { src: require('../../../assets/黄色圆形.png'), x: 1100, y: 100, alt: 'y' },
-            ],
+            imageList: this.generateImageList(this.shuffleArray([
+                { src: require('../../../assets/蓝色三角形.png'), alt: 'b' },
+                { src: require('../../../assets/蓝色三角形.png'), alt: 'b' },
+                { src: require('../../../assets/黄色矩形.png'), alt: 'y' },
+                { src: require('../../../assets/蓝色矩形.png'), alt: 'b' },
+                { src: require('../../../assets/黄色三角形.png'), alt: 'y' },
+                { src: require('../../../assets/黄色三角形.png'), alt: 'y' },
+                { src: require('../../../assets/蓝色圆形.png'), alt: 'b' },
+                { src: require('../../../assets/黄色圆形.png'), alt: 'y' },
+            ])),
             draggingIndex: null,
             offsetX: 0,
             offsetY: 0,
@@ -52,6 +52,26 @@ export default {
         };
     },
     methods: {
+        generateImageList(images) {
+            // 根据顺序填充坐标
+            const startX = 50; // 起始 x 坐标
+            const startY = 100; // 起始 y 坐标
+            const gap = 150; // 每个图片之间的间距
+
+            return images.map((image, index) => ({
+                ...image,
+                x: startX + index * gap, // 依次填充 x 坐标
+                y: startY, // y 坐标固定
+            }));
+        },
+        shuffleArray(array) {
+            // 使用 Fisher-Yates 洗牌算法
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        },
         toggleSwitch(event) {
             this.isOn = !this.isOn;
             if (!this.isOn) {
@@ -117,9 +137,6 @@ export default {
                     imgRect.bottom > dropArea.top - 20 &&
                     imgRect.bottom < dropArea.top + 30
                 ) {
-                    // if (count >= 2) {
-                    //     return;
-                    // }
                     this.imageList_alt[count] = imgRect.alt;
                     count++;
                 }
@@ -127,14 +144,10 @@ export default {
 
             // 如果有两个图片在区域内，播放音频
             if (count == 2 && this.imageList_alt[0] == this.imageList_alt[1]) {
-                //document.getElementById('audio').play();
                 this.$refs.audio.play();
-                //document.querySelector('audio').play();
-                // console.log('弹出提示的可见性变化: on', this.imageList_alt[0], this.imageList_alt[1]);
             } else {
                 this.$refs.audio.pause();
                 this.$refs.audio.currentTime = 0; // 可选：将音频播放时间重置为0
-                // console.log('弹出提示的可见性变化: false', );
             }
         },
         iosplay() {
@@ -146,7 +159,6 @@ export default {
         },
     },
 };
-
 </script>
 
 <style scoped>

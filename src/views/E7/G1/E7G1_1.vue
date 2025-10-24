@@ -39,16 +39,16 @@ export default {
     name: 'E3G1',
     data() {
         return {
-            imageList: [
-                { src: require('../../../assets/1024/E7H红矩形.png'), x: 50, y: 100, alt: 'r' },
-                { src: require('../../../assets/1024/E7H红圆形.png'), x: 200, y: 100, alt: 'r' },
-                { src: require('../../../assets/1024/E7H红三角形.png'), x: 350, y: 100, alt: 'r' },
-                { src: require('../../../assets/1024/E7H蓝矩形.png'), x: 500, y: 100, alt: 'b' },
-                { src: require('../../../assets/1024/E7H蓝圆形.png'), x: 650, y: 100, alt: 'b' },
-                { src: require('../../../assets/1024/E7H蓝三角形.png'), x: 800, y: 100, alt: 'b' },
-                { src: require('../../../assets/1024/E7H红矩形.png'), x: 950, y: 100, alt: 'r' },
-                { src: require('../../../assets/1024/E7H蓝圆形.png'), x: 1100, y: 100, alt: 'b' },
-            ],
+            imageList: this.generateImageList(this.shuffleArray([
+                { src: require('../../../assets/1024/E7H红矩形.png'), alt: 'r' },
+                { src: require('../../../assets/1024/E7H红圆形.png'),  alt: 'r' },
+                { src: require('../../../assets/1024/E7H红三角形.png'), alt: 'r' },
+                { src: require('../../../assets/1024/E7H蓝矩形.png'),  alt: 'b' },
+                { src: require('../../../assets/1024/E7H蓝圆形.png'),  alt: 'b' },
+                { src: require('../../../assets/1024/E7H蓝三角形.png'), alt: 'b' },
+                { src: require('../../../assets/1024/E7H红矩形.png'), alt: 'r' },
+                { src: require('../../../assets/1024/E7H蓝圆形.png'), alt: 'b' },
+                ])),
             imageList1: [
                 // { src: require('../../../assets/小-黄-三角形.png'), x: 350, y: 150, alt: 's' },
                 // { src: require('../../../assets/小-黄-矩形.png'), x: 500, y: 150, alt: 'j' },
@@ -65,6 +65,23 @@ export default {
         };
     },
     methods: {
+        shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        },
+        generateImageList(images) {
+            const startX = 50;
+            const startY = 100;
+            const gap = 150;
+            return images.map((image, index) => ({
+                ...image,
+                x: startX + index * gap,
+                y: startY,
+            }));
+        },
         toggleSwitch(event) {
             this.isOn = !this.isOn;
             if (!this.isOn) {
