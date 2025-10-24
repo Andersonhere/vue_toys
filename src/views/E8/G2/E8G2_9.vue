@@ -39,7 +39,7 @@ export default {
             options: [
                 {
                     label: 'A',
-                    text: '形状一样的两个积木和花纹一样的两个积木都能让玩具发出音乐',
+                    text: '颜色一样的两个积木能让玩具发出音乐',
                     gender: 'A'
                 },
                 {

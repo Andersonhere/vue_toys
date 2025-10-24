@@ -44,10 +44,10 @@ export default {
             imageList: [
                 { src: require('../../../assets/0823/E8H橙矩形有花纹.png'), x: 50, y: 100, alt: 'o' },
                 // { src: require('../../../assets/0606/E3E8H红三角形.png'), x: 200, y: 100, alt: 'g' },
-                { src: require('../../../assets/0823/E8H蓝三角有花纹.png'), x: 350, y: 100, alt: 'o' },
+                { src: require('../../../assets/0823/E8H蓝三角有花纹.png'), x: 200, y: 100, alt: 'o' },
                 // { src: require('../../../assets/0524/黄色三角形.png'), x: 500, y: 100, alt: 'y' },
                 // { src: require('../../../assets/0606/E2E8H草绿圆形.png'), x: 650, y: 100, alt: 'l' },
-                { src: require('../../../assets/0823/E8H蓝三角无花纹.png'), x: 800, y: 100, alt: 'o' },
+                { src: require('../../../assets/0823/E8H蓝三角无花纹.png'), x: 950, y: 100, alt: 'o' },
                 // { src: require('../../../assets/0606/E8H草绿梯形.png'), x: 950, y: 100, alt: 'l' },
                 { src: require('../../..//assets/0823/E8H橙三角有花纹.png'), x: 1100, y: 100, alt: 'l' },
             ],

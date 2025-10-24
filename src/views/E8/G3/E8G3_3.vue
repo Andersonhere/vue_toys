@@ -13,7 +13,7 @@
         <div class="container">
 
             <div class="question">
-                你觉得什么原因/什么样的积木可能让玩具发出音乐？（可多选）
+                你觉得什么原因/什么样的积木可能让玩具发出音乐？
             </div>
 
             <div class="options">
@@ -43,17 +43,17 @@ export default {
             options: [
                 {
                     label: 'A',
-                    text: '颜色一样的两个积木有可能让玩具发出音乐',
+                    text: '颜色和花纹一样的两个积木有可能让玩具发出音乐',
                     gender: 'A'
                 },
                 {
                     label: 'B',
-                    text: '形状一样的两个积木有可能让玩具发出音乐',
+                    text: '花纹和形状一样的两个积木有可能让玩具发出音乐',
                     gender: 'B'
                 },
                 {
                     label: 'C',
-                    text: '花纹一样的两个积木有可能让玩具发出音乐',
+                    text: '形状和颜色一样的两个积木有可能让玩具发出音乐',
                     gender: 'C'
                 }
             ]
