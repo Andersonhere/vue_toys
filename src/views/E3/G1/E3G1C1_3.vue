@@ -248,7 +248,7 @@ export default {
     height: 150px;
     /* 目标高度 */
     /* 设置区域高度 */
-    background-image: url('../../../assets/灰色带花纹玩具.png');
+    background-image: url('../../../assets/1024/E3G1-1.png');
     background-repeat: no-repeat;
     margin-bottom: 30px;
     /* 向下移动 */
